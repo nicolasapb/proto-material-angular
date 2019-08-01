@@ -10,7 +10,6 @@ export class DashboardComponent implements OnInit {
   pagina = 'pagamentos';
   constructor() { }
 
-  ngOnInit() { 
-  }
+  ngOnInit() { }
 
 }

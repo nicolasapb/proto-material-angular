@@ -26,8 +26,7 @@ export class EconomiasComponent implements OnInit {
     }
   };
 
-  public pieChartLabels: Label[] = [['Poupança'], ['FGTS'], ['CDB'], ['Tesouro']];
-  // public pieChartData: Economias[] = [ECONOMIAS];
+  public pieChartLabels: Label[] = [['Poupança'], ['FGTS'], ['CDB'], ['Tesouro']]; 
   public pieChartData: number[] = [ECONOMIAS.poupanca, ECONOMIAS.fgts, ECONOMIAS.cdb, ECONOMIAS.tesouro];
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;

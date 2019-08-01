@@ -4,7 +4,6 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-barras-progresso',
   templateUrl: './barras-progresso.component.html',
   styleUrls: ['./barras-progresso.component.css']
-  
 })
 export class BarrasProgressoComponent implements OnInit {
 

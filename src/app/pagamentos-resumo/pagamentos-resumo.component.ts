@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'; 
 import { RESUMO } from '../mock-data/mock-resumo';
+import { Resumo } from '../resumo';
 
 @Component({
   selector: 'app-pagamentos-resumo',
@@ -10,7 +11,7 @@ export class PagamentosResumoComponent implements OnInit {
 
   public displayedColumns: string[] = ['tipoDeParcela', 'qtdParcelas', 'valor', 'total', 'dataInicial'];
 
-  public resumo = RESUMO;
+  public resumo: Resumo[] = RESUMO;
 
   constructor() { }
 

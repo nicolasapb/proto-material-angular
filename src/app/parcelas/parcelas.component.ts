@@ -9,22 +9,21 @@ import { TipoPagamento } from '../TipoPagamento';
 })
 export class ParcelasComponent implements OnInit {
 
-  public meta: number = 32500.00;
+  public meta = 32500.00;
   public total: number = this.getTotal();
   public falta = this.getDif();
   public pctFalta = this.falta / this.meta;
-  public pctTotal = 1 - this.pctFalta; 
-  
+  public pctTotal = 1 - this.pctFalta;
   public parcelas = [{ total: this.total, falta: this.falta, pctTotal: this.pctTotal, pctFalta: this.pctFalta, meta: this.meta }];
   public parcelasHeader = ['total', 'falta', 'pctTotal', 'pctFalta', 'meta']
 
   constructor() {
    }
 
-  ngOnInit() { 
+  ngOnInit() {
   }
 
-  getTotal() {
+  getTotal(): number {
     return PAGAMENTOS_LISTA.filter(t => t.tipo === TipoPagamento.parcela)
       .map(t => t.valorPago)
       .reduce((acc, value) => acc + value, 0);
@@ -33,5 +32,5 @@ export class ParcelasComponent implements OnInit {
   getDif(): number {
     const total = this.getTotal();
     return this.meta - total;
-  } 
+  }
 }
