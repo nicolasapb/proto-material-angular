@@ -1,0 +1,19 @@
+.mat-card {
+    max-width: fit-content;
+  }
+
+.mat-cell, .mat-header-cell {
+    padding-right: 0.5em;
+}
+
+table.savings-header-table td {
+  font-weight: bold;
+}
+
+table.savings-table tr {
+  height: 20px;
+}
+
+table.savings-table td {
+  border: none;
+}

@@ -1,0 +1,12 @@
+/* div.pagamentos-container * {
+    font-size: 90%;
+} */
+
+#resumo, #pagamentos-lista, #savings, #barras-progresso, #parcelas, #economias {
+    margin-top: 2em; 
+    margin-left: 2em;  
+}
+
+#barras-progresso { 
+    max-width: 65%; 
+}

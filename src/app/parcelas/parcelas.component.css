@@ -1,0 +1,11 @@
+.mat-card {
+    max-width: fit-content;
+}
+
+.mat-cell, .mat-header-cell {
+    padding-right: 0.5em;
+}
+
+table.parcelas-table td {
+  font-weight: bold;
+}

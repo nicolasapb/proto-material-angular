@@ -1,0 +1,16 @@
+.mat-card {
+  max-width: fit-content;
+}
+
+table {
+  width: auto;
+}
+
+tr.mat-footer-row {
+font-weight: bold;
+}
+
+
+.mat-cell, .mat-header-cell {
+  padding: 0.5em;
+}

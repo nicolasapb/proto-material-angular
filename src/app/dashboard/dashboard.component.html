@@ -1,0 +1,17 @@
+<mat-sidenav-container>
+    <mat-sidenav mode="side" opened>Sidenav content</mat-sidenav>
+    <mat-sidenav-content>
+     <span [ngSwitch]="pagina">
+     <div *ngSwitchCase="'pagamentos'">
+        <app-pagamentos></app-pagamentos>
+     </div>
+     <div *ngSwitchCase="'caixa'">
+        caixa
+     </div>
+     <div *ngSwitchDefault>
+        main
+     </div>
+     </span>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+  
