@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';  
-import { PAGAMENTOS_LISTA } from '../mock-pagamentos-lista';
+import { PAGAMENTOS_LISTA } from '../mock-data/mock-pagamentos-lista';
 
 @Component({
   selector: 'app-pagamentos-lista',

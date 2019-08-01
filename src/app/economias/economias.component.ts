@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Economias } from '../economias';
-import { ECONOMIAS } from '../mock-economias';
+import { ECONOMIAS } from '../mock-data/mock-economias';
 import { Label } from 'ng2-charts';
 import { ChartOptions, ChartType } from 'chart.js';
 

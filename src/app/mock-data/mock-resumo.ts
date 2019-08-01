@@ -1,4 +1,4 @@
-import { Resumo } from './resumo';
+import { Resumo } from '../resumo';
 
 export const RESUMO: Resumo[] = [
     {tipoDeParcela: 'Entrada', qtdParcelas: 1, valor: 60000.00, total: 60000.00, dataInicial: new Date(2019, 1, 11)},

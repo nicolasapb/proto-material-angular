@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SAVINGS } from '../mock-savings';
+import { SAVINGS } from '../mock-data/mock-savings';
 import { Savings } from '../savings';
 
 @Component({

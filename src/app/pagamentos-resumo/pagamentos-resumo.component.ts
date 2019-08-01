@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'; 
-import { RESUMO } from '../mock-resumo';
+import { RESUMO } from '../mock-data/mock-resumo';
 
 @Component({
   selector: 'app-pagamentos-resumo',

@@ -1,5 +1,5 @@
-import { PagamentosLista } from './pagamentos-lista';
-import { TipoPagamento } from './TipoPagamento';
+import { PagamentosLista } from '../pagamentos-lista';
+import { TipoPagamento } from '../TipoPagamento';
 
 export const PAGAMENTOS_LISTA: PagamentosLista[] = [
     {beneficiario: 'MAXCASA XXVII EMP IMOB LTDA', dtVencimento: new Date(2019, 1, 12), valor: 30000.00, dtPagamento: new Date(2019, 1, 12), valorPago: 30000.00, autenticacao: 'MBB351FC703E985426DC491', contaDestino: '0350/0000207601', cnpj: '13.070.428/0001-52', tipo: TipoPagamento.entrada},
