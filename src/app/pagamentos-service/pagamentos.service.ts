@@ -17,19 +17,19 @@ export class PagamentosService {
 
   constructor() { }
 
-  getEconomias(): Economias {
-    return ECONOMIAS;
+  getEconomias(): Observable<Economias> {
+    return of(ECONOMIAS);
   }
 
-  getPagamentosList(): PagamentosLista[] {
-    return PAGAMENTOS_LISTA;
+  getPagamentosList(): Observable<PagamentosLista[]> {
+    return of(PAGAMENTOS_LISTA);
   }
 
-  getResumo(): Resumo[] {
-    return RESUMO;
+  getResumo(): Observable<Resumo[]> {
+    return of(RESUMO);
   }
 
-  getSavings(): Savings[] {
-    return SAVINGS;
+  getSavings(): Observable<Savings[]> {
+    return of(SAVINGS);
   }
 }

@@ -27,9 +27,6 @@ export class BarrasProgressoComponent implements OnInit {
     this.calcValueEntrada();
     this.calcValueParcelaUnica();
     this.calcValueParcelas();
-    console.log(this.valueEntrada);
-    console.log(this.valueParcelaUnica);
-    console.log(this.valueParcelas);
   }
 
   calcValueEntrada(): void {

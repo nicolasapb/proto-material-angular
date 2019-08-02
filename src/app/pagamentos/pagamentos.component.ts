@@ -28,23 +28,27 @@ export class PagamentosComponent implements OnInit {
     this.getEconomias();
     this.getPagamentosList();
     this.getResumo();
-    this.getSavings();  
+    this.getSavings();
   }
 
   getEconomias(): void {
-    this.economias = this.pagamentosService.getEconomias();
+    this.pagamentosService.getEconomias()
+        .subscribe(economias => this.economias = economias);
   }
 
   getPagamentosList(): void {
-    this.pagamentosLista = this.pagamentosService.getPagamentosList();
+    this.pagamentosService.getPagamentosList()
+        .subscribe(pagamentosLista => this.pagamentosLista = pagamentosLista);
   }
 
   getResumo(): void {
-    this.resumo = this.pagamentosService.getResumo();
+    this.pagamentosService.getResumo()
+        .subscribe(resumo => this.resumo = resumo);
   }
 
   getSavings(): void {
-    this.savings = this.pagamentosService.getSavings();
+    this.pagamentosService.getSavings()
+        .subscribe(savings =>  this.savings = savings);
   }
 
 }
