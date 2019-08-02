@@ -10,18 +10,18 @@
         </app-barras-progresso>
     </div>
     <div id="resumo">
-        <app-pagamentos-resumo></app-pagamentos-resumo>
+        <app-pagamentos-resumo [resumo]="resumo"></app-pagamentos-resumo>
     </div>
     <div id="pagamentos-lista">
-        <app-pagamentos-lista></app-pagamentos-lista>
+        <app-pagamentos-lista [pagamentosLista]="pagamentosLista"></app-pagamentos-lista>
     </div>
     <div id="savings">
-        <app-savings></app-savings>
+        <app-savings [savings]="savings" [meta]="metaParcelaUnica"></app-savings>
     </div>
     <div id="parcelas">
-        <app-parcelas></app-parcelas>
+        <app-parcelas [pagamentosLista]="pagamentosLista" [meta]="metaParcelas"></app-parcelas>
     </div>
     <div id="economias">
-        <app-economias></app-economias>
+        <app-economias [economias]="economias"></app-economias>
     </div>
 </div>

@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Economias } from '../economias';
+import { Component, OnInit, Input } from '@angular/core'; 
 import { ECONOMIAS } from '../mock-data/mock-economias';
 import { Label } from 'ng2-charts';
 import { ChartOptions, ChartType } from 'chart.js';
+import { Economias } from '../economias';
 
 @Component({
   selector: 'app-economias',
@@ -10,6 +10,8 @@ import { ChartOptions, ChartType } from 'chart.js';
   styleUrls: ['./economias.component.css']
 })
 export class EconomiasComponent implements OnInit {
+
+  @Input() economias: Economias;
 
   public pieChartOptions: ChartOptions = {
     responsive: true,
@@ -27,7 +29,7 @@ export class EconomiasComponent implements OnInit {
   };
 
   public pieChartLabels: Label[] = [['Poupança'], ['FGTS'], ['CDB'], ['Tesouro']]; 
-  public pieChartData: number[] = [ECONOMIAS.poupanca, ECONOMIAS.fgts, ECONOMIAS.cdb, ECONOMIAS.tesouro];
+  public pieChartData: number[];
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
   public pieChartColors = [
@@ -39,6 +41,7 @@ export class EconomiasComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.pieChartData = [this.economias.poupanca, this.economias.fgts, this.economias.cdb, this.economias.tesouro];
   }
 
 }

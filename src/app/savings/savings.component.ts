@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { SAVINGS } from '../mock-data/mock-savings';
+import { Component, OnInit, Input } from '@angular/core';
 import { Savings } from '../savings';
 
 @Component({
@@ -9,27 +8,32 @@ import { Savings } from '../savings';
 })
 export class SavingsComponent implements OnInit {
 
-  public savings: Savings[] = SAVINGS;
-  public meta = 25500;
-  public total: number = this.getTotal();
-  public falta: number = this.getDif();
-  public pctFalta: number = this.falta / this.meta;
-  public pctTotal: number = 1 - this.pctFalta;
+  @Input() savings: Savings[];
+  @Input() meta: number;
 
-  public savingsHeader = [{ total: this.total, falta: this.falta, pctTotal: this.pctTotal, pctFalta: this.pctFalta, meta: this.meta }];
+  public total: number;
+  public falta: number;
+  public pctFalta: number;
+  public pctTotal: number;
+  public savingsHeader: any[];
   public savingsHeaderColunas = ['total', 'falta', 'pctTotal', 'pctFalta', 'meta'];
 
   constructor() { }
 
-  ngOnInit() { }
-
-  getTotal(): number {
-    return this.savings.map(t => t.valor).reduce((acc, value) => acc + value, 0);
+  ngOnInit() {
+    this.getTotal();
+    this.getDif();
+    this.pctFalta = this.falta / this.meta;
+    this.pctTotal = 1 - this.pctFalta;
+    this.savingsHeader = [{ total: this.total, falta: this.falta, pctTotal: this.pctTotal, pctFalta: this.pctFalta, meta: this.meta }];
   }
 
-  getDif(): number {
-    const total = this.getTotal();
-    return this.meta - total;
+  getTotal(): void {
+    this.total = this.savings.map(t => t.valor).reduce((acc, value) => acc + value, 0);
   }
 
+  getDif(): void {
+    this.falta = this.meta - this.total;
+  }
+  
 }

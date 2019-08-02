@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';  
+import { Component, OnInit, Input } from '@angular/core';
 import { PAGAMENTOS_LISTA } from '../mock-data/mock-pagamentos-lista';
+import { PagamentosLista } from '../pagamentos-lista';
 
 @Component({
   selector: 'app-pagamentos-lista',
@@ -8,14 +9,16 @@ import { PAGAMENTOS_LISTA } from '../mock-data/mock-pagamentos-lista';
 })
 export class PagamentosListaComponent implements OnInit {
 
-  public displayedColumns: string[] = ['beneficiario', 'dtVencimento', 'valor', 'dtPagamento', 'valorPago', 'autenticacao', 'contaDestino', 'cnpj'];
+  public displayedColumns: string[] = [
+    'beneficiario', 'dtVencimento', 'valor', 'dtPagamento', 'valorPago', 'autenticacao', 'contaDestino', 'cnpj'
+  ];
 
-  public pagamentosLista = PAGAMENTOS_LISTA;
+  @Input() pagamentosLista: PagamentosLista[];
 
   constructor() { }
 
   ngOnInit() {
-  } 
+  }
 
 }
 
