@@ -1,10 +1,19 @@
 <div> 
-    <p>Entrada:</p><mat-progress-bar [color]="valueEntrada === 100 ? 'primary' : 'warn'" [mode]="mode" [value]="valueEntrada"></mat-progress-bar>
+    <p>Entrada:</p><mat-progress-bar 
+        [color]="valueEntrada >= 1 ? 'primary' : 'warn'" 
+        mode="determinate" 
+        [value]="valueEntrada * 100"></mat-progress-bar>
 </div>
 <div> 
-    <p>Parcela única:</p><mat-progress-bar [color]="valueParcelaUnica === 100 ? 'primary' : 'warn'" [mode]="mode" [value]="valueParcelaUnica"></mat-progress-bar>
+    <p>Parcela única:</p><mat-progress-bar 
+        [color]="valueParcelaUnica >= 1 ? 'primary' : 'warn'" 
+        mode="determinate" 
+        [value]="valueParcelaUnica * 100"></mat-progress-bar>
 </div>
 <div> 
-    <p>Parcelas mensais:</p><mat-progress-bar [color]="valueParcelas === 100 ? 'primary' : 'warn'" [mode]="mode" [value]="valueParcelas"></mat-progress-bar>
+    <p>Parcelas mensais:</p><mat-progress-bar 
+        [color]="valueParcelas >= 1 ? 'primary' : 'warn'" 
+        mode="determinate" 
+        [value]="valueParcelas * 100"></mat-progress-bar>
 </div>
  
