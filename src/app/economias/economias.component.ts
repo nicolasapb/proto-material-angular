@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core'; 
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core'; 
 import { ECONOMIAS } from '../mock-data/mock-economias';
 import { Label } from 'ng2-charts';
 import { ChartOptions, ChartType } from 'chart.js';
@@ -9,7 +9,7 @@ import { Economias } from '../economias';
   templateUrl: './economias.component.html',
   styleUrls: ['./economias.component.css']
 })
-export class EconomiasComponent implements OnInit {
+export class EconomiasComponent implements OnChanges {
 
   @Input() economias: Economias;
 
@@ -29,7 +29,7 @@ export class EconomiasComponent implements OnInit {
   };
 
   public pieChartLabels: Label[] = [['Poupança'], ['FGTS'], ['CDB'], ['Tesouro']]; 
-  public pieChartData: number[];
+  public pieChartData: number[] = [0, 0, 0, 0];
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
   public pieChartColors = [
@@ -40,8 +40,11 @@ export class EconomiasComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-    this.pieChartData = [this.economias.poupanca, this.economias.fgts, this.economias.cdb, this.economias.tesouro];
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.economias && changes.economias.currentValue) {
+      this.economias = changes.economias.currentValue;
+      this.pieChartData = [this.economias.poupanca, this.economias.fgts, this.economias.cdb, this.economias.tesouro];
+    }
   }
 
 }

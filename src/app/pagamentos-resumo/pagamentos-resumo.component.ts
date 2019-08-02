@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Resumo } from '../resumo';
 
 @Component({
@@ -6,19 +6,25 @@ import { Resumo } from '../resumo';
   templateUrl: './pagamentos-resumo.component.html',
   styleUrls: ['./pagamentos-resumo.component.css']
 })
-export class PagamentosResumoComponent implements OnInit {
-
+export class PagamentosResumoComponent implements OnChanges {
   public displayedColumns: string[] = ['tipoDeParcela', 'qtdParcelas', 'valor', 'total', 'dataInicial'];
 
   @Input() resumo: Resumo[];
+  public total: number;
 
   constructor() { }
 
-  ngOnInit() {
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.resumo && changes.resumo.currentValue) {
+      this.resumo = changes.resumo.currentValue;
+      this.total = this.getTotal(this.resumo); 
+    }
   }
 
-  getTotal(): number {
-    return this.resumo.map(t => t.total).reduce((acc, value) => acc + value, 0);
+
+  getTotal(resumo: Resumo[]): number {
+    return resumo.map(t => t.total).reduce((acc, value) => acc + value, 0);
   }
 
 }

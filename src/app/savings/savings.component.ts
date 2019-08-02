@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Savings } from '../savings';
 
 @Component({
@@ -6,7 +6,7 @@ import { Savings } from '../savings';
   templateUrl: './savings.component.html',
   styleUrls: ['./savings.component.css']
 })
-export class SavingsComponent implements OnInit {
+export class SavingsComponent implements OnChanges {
 
   @Input() savings: Savings[];
   @Input() meta: number;
@@ -20,12 +20,21 @@ export class SavingsComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-    this.getTotal();
-    this.getDif();
-    this.pctFalta = this.falta / this.meta;
-    this.pctTotal = 1 - this.pctFalta;
-    this.savingsHeader = [{ total: this.total, falta: this.falta, pctTotal: this.pctTotal, pctFalta: this.pctFalta, meta: this.meta }];
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.savings && changes.savings.currentValue) {
+      this.savings = changes.savings.currentValue;
+      this.getTotal();
+      this.getDif();
+      this.pctFalta = this.falta / this.meta;
+      this.pctTotal = 1 - this.pctFalta;
+      this.savingsHeader = [{
+        total: this.total,
+        falta: this.falta,
+        pctTotal: this.pctTotal,
+        pctFalta: this.pctFalta,
+        meta: this.meta
+      }];
+    }
   }
 
   getTotal(): void {
@@ -35,5 +44,5 @@ export class SavingsComponent implements OnInit {
   getDif(): void {
     this.falta = this.meta - this.total;
   }
-  
+
 }

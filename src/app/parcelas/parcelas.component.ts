@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { PAGAMENTOS_LISTA } from '../mock-data/mock-pagamentos-lista';
 import { TipoPagamento } from '../TipoPagamento';
 import { PagamentosLista } from '../pagamentos-lista';
@@ -8,7 +8,7 @@ import { PagamentosLista } from '../pagamentos-lista';
   templateUrl: './parcelas.component.html',
   styleUrls: ['./parcelas.component.css']
 })
-export class ParcelasComponent implements OnInit {
+export class ParcelasComponent implements OnChanges {
 
   @Input() meta: number;
   @Input() pagamentosLista: PagamentosLista[];
@@ -23,13 +23,16 @@ export class ParcelasComponent implements OnInit {
   constructor() {
    }
 
-  ngOnInit() {
-    this.getTotal();
-    this.getDif();
-    this.pctFalta = this.falta / this.meta;
-    this.pctTotal = 1 - this.pctFalta;
-    this.parcelas = [{ total: this.total, falta: this.falta, pctTotal: this.pctTotal, pctFalta: this.pctFalta, meta: this.meta }];
-  }
+   ngOnChanges(changes: SimpleChanges): void {
+    if (changes.pagamentosLista && changes.pagamentosLista.currentValue) {
+      this.pagamentosLista = changes.pagamentosLista.currentValue;
+      this.getTotal();
+      this.getDif();
+      this.pctFalta = this.falta / this.meta;
+      this.pctTotal = 1 - this.pctFalta;
+      this.parcelas = [{ total: this.total, falta: this.falta, pctTotal: this.pctTotal, pctFalta: this.pctFalta, meta: this.meta }];
+    }
+   }
 
   getTotal(): void {
     this.total = this.pagamentosLista.filter(t => t.tipo === TipoPagamento.parcela)

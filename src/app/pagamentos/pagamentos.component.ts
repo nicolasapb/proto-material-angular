@@ -3,7 +3,7 @@ import { Economias } from '../economias';
 import { PagamentosLista } from '../pagamentos-lista';
 import { Resumo } from '../resumo';
 import { Savings } from '../savings';
-import { PagamentosService } from '../pagamentos-service/pagamentos.service';
+import { PagamentosService } from '../pagamentos-service/pagamentos.service'; 
 
 @Component({
   selector: 'app-pagamentos',
@@ -33,17 +33,17 @@ export class PagamentosComponent implements OnInit {
 
   getEconomias(): void {
     this.pagamentosService.getEconomias()
-        .subscribe(economias => this.economias = economias);
+        .subscribe(economias => this.economias = economias );
   }
 
   getPagamentosList(): void {
     this.pagamentosService.getPagamentosList()
-        .subscribe(pagamentosLista => this.pagamentosLista = pagamentosLista);
+        .subscribe(pagamentosLista => this.pagamentosLista = pagamentosLista );
   }
 
   getResumo(): void {
     this.pagamentosService.getResumo()
-        .subscribe(resumo => this.resumo = resumo);
+        .subscribe(resumo => this.resumo = resumo );
   }
 
   getSavings(): void {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Resumo } from '../resumo';
 import { PagamentosLista } from '../pagamentos-lista';
 import { Savings } from '../savings';
@@ -9,48 +9,63 @@ import { TipoPagamento } from '../TipoPagamento';
   templateUrl: './barras-progresso.component.html',
   styleUrls: ['./barras-progresso.component.css']
 })
-export class BarrasProgressoComponent implements OnInit {
+export class BarrasProgressoComponent implements OnChanges {
 
   @Input() resumo: Resumo[];
   @Input() pagamentosLista: PagamentosLista[];
   @Input() savings: Savings[];
   @Input() metaParcelaUnica: number;
   @Input() metaParcelas: number;
- 
+
   public valueEntrada: number;
   public valueParcelaUnica: number;
   public valueParcelas: number;
 
   constructor() { }
 
-  ngOnInit() {
-    this.calcValueEntrada();
-    this.calcValueParcelaUnica();
-    this.calcValueParcelas();
-  }
+ ngOnChanges(changes: SimpleChanges): void {
 
-  calcValueEntrada(): void {
-   const sumEntradaPaga: number = this.pagamentosLista.filter(f => f.tipo === TipoPagamento.entrada)
+   if (changes.resumo && changes.resumo.currentValue) {
+       this.resumo = changes.resumo.currentValue;
+   }
+
+   if (changes.pagamentosLista && changes.pagamentosLista.currentValue) {
+       this.pagamentosLista = changes.pagamentosLista.currentValue; 
+       this.calcValueParcelas(this.pagamentosLista);
+   }
+
+   if (changes.savings && changes.savings.currentValue) {
+       this.savings = changes.savings.currentValue; 
+       this.calcValueParcelaUnica(this.savings);
+   }
+
+   if (this.resumo && this.pagamentosLista) {
+     this.calcValueEntrada(this.pagamentosLista, this.resumo);
+   }
+
+ }
+
+  calcValueEntrada(pagamentosLista: PagamentosLista[], resumo: Resumo[]): void {
+   const sumEntradaPaga: number = pagamentosLista.filter(f => f.tipo === TipoPagamento.entrada)
     .map(v => v.valorPago)
     .reduce((total, valor) => total + valor, 0);
 
-   const valorEntrada: number = this.resumo.filter(f => f.tipo === TipoPagamento.entrada)
+   const valorEntrada: number = resumo.filter(f => f.tipo === TipoPagamento.entrada)
     .map(v => v.valor)
     .reduce((total, valor) => total + valor, 0);
 
    this.valueEntrada = sumEntradaPaga / valorEntrada;
-
   }
 
-  calcValueParcelaUnica(): void {
-    const sumSavings: number = this.savings.map(t => t.valor)
+  calcValueParcelaUnica(savings: Savings[]): void {
+    const sumSavings: number = savings.map(t => t.valor)
       .reduce((total, valor) => total + valor, 0);
 
     this.valueParcelaUnica = sumSavings / this.metaParcelaUnica;
   }
 
-  calcValueParcelas(): void {
-    const sumParcelas: number = this.pagamentosLista.filter(f => f.tipo === TipoPagamento.parcela)
+  calcValueParcelas(pagamentosLista: PagamentosLista[]): void {
+    const sumParcelas: number = pagamentosLista.filter(f => f.tipo === TipoPagamento.parcela)
       .map(t => t.valorPago)
       .reduce((total, valor) => total + valor, 0);
 
