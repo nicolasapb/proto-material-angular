@@ -5,13 +5,9 @@ import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { Economias } from '../economias';
-import { ECONOMIAS } from '../mock-data/mock-economias';
 import { PagamentosLista } from '../pagamentos-lista';
-import { PAGAMENTOS_LISTA } from '../mock-data/mock-pagamentos-lista';
 import { Resumo } from '../resumo';
-import { RESUMO } from '../mock-data/mock-resumo';
 import { Savings } from '../savings';
-import { SAVINGS } from '../mock-data/mock-savings';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +24,7 @@ export class PagamentosService {
   /**
    * GET Economias
    */
-  getEconomias(): Observable<Economias> { 
+  getEconomias(): Observable<Economias> {
     return this.http.get<Economias>(this.economiasUrl)
       .pipe(
         catchError(this.handleError<Economias>('getEconomias'))
@@ -71,7 +67,7 @@ export class PagamentosService {
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure
