@@ -1,5 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core'; 
-import { ECONOMIAS } from '../mock-data/mock-economias';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Label } from 'ng2-charts';
 import { ChartOptions, ChartType } from 'chart.js';
 import { Economias } from '../economias';
@@ -15,6 +14,7 @@ export class EconomiasComponent implements OnChanges {
 
   public pieChartOptions: ChartOptions = {
     responsive: true,
+    aspectRatio: 1,
     legend: {
       position: 'top',
     },
@@ -28,10 +28,10 @@ export class EconomiasComponent implements OnChanges {
     }
   };
 
-  public pieChartLabels: Label[] = [['Poupança'], ['FGTS'], ['CDB'], ['Tesouro']]; 
+  public pieChartLabels: Label[] = ['Poupança', 'FGTS', 'CDB', 'Tesouro'];
   public pieChartData: number[] = [0, 0, 0, 0];
   public pieChartType: ChartType = 'pie';
-  public pieChartLegend = true;
+  public pieChartLegend = false;
   public pieChartColors = [
     {
       backgroundColor: ['rgba(255,0,0,0.3)', 'rgba(0,255,0,0.3)', 'rgba(0,0,255,0.3)', 'rgba(255,255,0,0.3)'],

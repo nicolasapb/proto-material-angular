@@ -1,6 +1,6 @@
 <h1 style="text-align: center">{{ titulo }}</h1>
 <div class="pagamentos-container"> 
-    <div id="barras-progresso">  
+    <div class="barras-progresso">  
         <app-barras-progresso 
             [resumo]="resumo" 
             [pagamentosLista]="pagamentosLista" 
@@ -9,19 +9,19 @@
             [metaParcelas]="metaParcelas">
         </app-barras-progresso> 
     </div>
-    <div id="resumo">
+    <div class="resumo">
         <app-pagamentos-resumo [resumo]="resumo"></app-pagamentos-resumo>
     </div>
-    <div id="pagamentos-lista">
+    <div class="pagamentos-lista">
         <app-pagamentos-lista [pagamentosLista]="pagamentosLista"></app-pagamentos-lista>
     </div>
-    <div id="savings">
+    <div class="savings">
         <app-savings [savings]="savings" [meta]="metaParcelaUnica"></app-savings>
     </div>
-    <div id="parcelas">
+    <div class="parcelas">
         <app-parcelas [pagamentosLista]="pagamentosLista" [meta]="metaParcelas"></app-parcelas>
     </div>
-    <div id="economias">
+    <div class="economias">
         <app-economias [economias]="economias"></app-economias>
     </div>
 </div>
