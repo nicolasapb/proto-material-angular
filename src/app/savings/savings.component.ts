@@ -26,6 +26,9 @@ export class SavingsComponent implements OnChanges {
       this.getTotal();
       this.getDif();
       this.pctFalta = this.falta / this.meta;
+      if (this.pctFalta < 0) {
+        this.pctFalta = 0;
+      }
       this.pctTotal = 1 - this.pctFalta;
       this.savingsHeader = [{
         total: this.total,
@@ -38,7 +41,7 @@ export class SavingsComponent implements OnChanges {
   }
 
   getTotal(): void {
-    this.total = this.savings.map(t => t.valor).reduce((acc, value) => acc + value, 0);
+    this.total = this.savings.map(t => t.valor).reduce((acc, value) => acc + value, 0); 
   }
 
   getDif(): void {

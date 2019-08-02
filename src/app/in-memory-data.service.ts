@@ -13,13 +13,6 @@ export class InMemoryDataService implements InMemoryDbService {
 
   createDb() {
 
-    const economias: Economias = {
-      poupanca: 23356.90,
-      fgts: 55180.34,
-      cdb: 35668.76,
-      tesouro: 23361.77
-    };
-
     const pagamentosLista: PagamentosLista[] = [{
       beneficiario: 'MAXCASA XXVII EMP IMOB LTDA',
       dtVencimento: new Date(2019, 1, 12),
@@ -140,6 +133,16 @@ export class InMemoryDataService implements InMemoryDbService {
       contaDestino: '0350/0000207601',
       cnpj: '13.070.428/0001-52',
       tipo: TipoPagamento.parcela
+    }, {
+      beneficiario: 'MAXCASA XXVII EMP IMOB LTDA',
+      dtVencimento: new Date(2019, 7, 1),
+      valor: 2531.91,
+      dtPagamento: new Date(2019, 7, 1),
+      valorPago: 2531.91,
+      autenticacao: '36E624C8933E65414ADAA1B',
+      contaDestino: '0350/0000207601',
+      cnpj: '13.070.428/0001-52',
+      tipo: TipoPagamento.parcela
     }];
 
     const resumo: Resumo[] = [{
@@ -233,9 +236,25 @@ export class InMemoryDataService implements InMemoryDbService {
         valor: 2300.00
       },
       {
-        valor: 20.80
+        valor: 20.19
+      },
+      {
+        valor: 10000.00
+      },
+      {
+        valor: 57.96
+      },
+      {
+        valor: 1585.75
       }
     ];
+
+    const economias: Economias = {
+      poupanca: savings.map(t => t.valor).reduce((acc, value) => acc + value, 0),
+      fgts: 55180.34,
+      cdb: 35811.54,
+      tesouro: 25461.10
+    };
 
     return {
       economias,
