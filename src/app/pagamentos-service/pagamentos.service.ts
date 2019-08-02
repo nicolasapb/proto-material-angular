@@ -85,6 +85,10 @@ export class PagamentosService {
     };
   }
 
+  /**
+   * exibe um log no console
+   * @param log - mensagem de log
+   */
   log(log: string) {
     console.log(log);
   }
