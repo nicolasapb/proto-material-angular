@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core'; 
 import { PagamentosLista } from '../pagamentos-lista';
+import { MatDialog } from '@angular/material/dialog';
+import { NovoPagamentoComponent } from '../novo-pagamento/novo-pagamento.component';
 
 @Component({
   selector: 'app-pagamentos-lista',
@@ -14,7 +16,9 @@ export class PagamentosListaComponent implements OnChanges {
 
   @Input() pagamentosLista: PagamentosLista[];
 
-  constructor() { }
+  novoPagamento: PagamentosLista;
+
+  constructor(public dialog: MatDialog) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.pagamentosLista && changes.pagamentosLista.currentValue) {
@@ -22,6 +26,19 @@ export class PagamentosListaComponent implements OnChanges {
     }
   }
 
+  openDialog(): void { 
+    const dialogRef = this.dialog.open(NovoPagamentoComponent, {
+      // height: '600px',
+      width: '400px',
+      data: new PagamentosLista()
+    });
+
+    dialogRef.afterClosed().subscribe(novoPagamento => {
+      console.log('The dialog was closed');
+      this.novoPagamento = novoPagamento as PagamentosLista;
+      console.log(this.novoPagamento);
+    });
+  }
 }
 
 
