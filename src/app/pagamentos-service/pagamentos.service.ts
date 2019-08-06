@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 
 import { Economias } from '../economias';
 import { PagamentosLista } from '../pagamentos-lista';
@@ -18,6 +18,10 @@ export class PagamentosService {
   private pagamentosListaUrl = 'api/pagamentosLista'; // URL pagamentosLista
   private resumoUrl = 'api/resumo'; // URL resumo
   private savingsUrl = 'api/savings'; // URL savings
+
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
 
   constructor( private http: HttpClient ) { }
 
@@ -58,6 +62,18 @@ export class PagamentosService {
     return this.http.get<Savings[]>(this.savingsUrl)
       .pipe(
         catchError(this.handleError<Savings[]>('getResumo', []))
+      );
+  }
+
+  /**
+   *
+   * @param novoPagamento - novo pagamento a ser adiciondo na lista de pagamentos
+   */
+  addPagamento(novoPagamento: PagamentosLista): Observable<PagamentosLista> {
+    return this.http.post<PagamentosLista>(this.pagamentosListaUrl, novoPagamento, this.httpOptions)
+      .pipe(
+        tap((pagamento: PagamentosLista) => this.log(`added novo Pagamento ${pagamento}`)),
+        catchError(this.handleError<PagamentosLista>('addPagamento'))
       );
   }
 

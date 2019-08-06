@@ -1,6 +1,7 @@
 import { TipoPagamento } from './TipoPagamento';
 
 export class PagamentosLista {
+    id?: number;
     beneficiario: string;
     dtVencimento: Date;
     valor: number;

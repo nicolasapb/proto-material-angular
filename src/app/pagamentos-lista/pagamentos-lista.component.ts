@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core'; 
+import { Component, OnInit, Input, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core'; 
 import { PagamentosLista } from '../pagamentos-lista';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NovoPagamentoComponent } from '../novo-pagamento/novo-pagamento.component';
+import { PagamentosService } from '../pagamentos-service/pagamentos.service';
 
 @Component({
   selector: 'app-pagamentos-lista',
@@ -18,26 +19,42 @@ export class PagamentosListaComponent implements OnChanges {
 
   novoPagamento: PagamentosLista;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    public dialog: MatDialog, 
+    private pagamentoServie: PagamentosService,
+    private cd: ChangeDetectorRef
+    ) { }
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(changes: SimpleChanges): void { 
     if (changes.pagamentosLista && changes.pagamentosLista.currentValue) {
       this.pagamentosLista = changes.pagamentosLista.currentValue;
+      console.log('atualizado', this.pagamentosLista)
     }
   }
 
-  openDialog(): void { 
-    const dialogRef = this.dialog.open(NovoPagamentoComponent, {
-      // height: '600px',
-      width: '400px',
-      data: new PagamentosLista()
-    });
+  openDialog(): void {
 
-    dialogRef.afterClosed().subscribe(novoPagamento => {
-      console.log('The dialog was closed');
-      this.novoPagamento = novoPagamento as PagamentosLista;
-      console.log(this.novoPagamento);
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    const dialogRef = this.dialog.open(NovoPagamentoComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(novoPagamento => { 
+      this.novoPagamento = novoPagamento as PagamentosLista; 
+      this.adicionaNovoPagamento(this.novoPagamento);
     });
+  }
+
+  adicionaNovoPagamento(novoPagamento: PagamentosLista) {
+     if (!novoPagamento) { return; }
+
+     this.pagamentoServie.addPagamento(novoPagamento)
+      .subscribe(novoPagamentoAdicionado => {
+        this.pagamentosLista.push(novoPagamentoAdicionado);
+        console.log(this.pagamentosLista);
+        });
   }
 }
 

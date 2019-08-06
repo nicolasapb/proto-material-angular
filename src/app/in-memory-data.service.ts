@@ -14,6 +14,7 @@ export class InMemoryDataService implements InMemoryDbService {
   createDb() {
 
     const pagamentosLista: PagamentosLista[] = [{
+      id: 1,
       beneficiario: 'MAXCASA XXVII EMP IMOB LTDA',
       dtVencimento: new Date(2019, 1, 12),
       valor: 30000.00,
@@ -24,6 +25,7 @@ export class InMemoryDataService implements InMemoryDbService {
       cnpj: '13.070.428/0001-52',
       tipo: TipoPagamento.entrada
     }, {
+      id: 2,
       beneficiario: 'NATHALIE',
       dtVencimento: new Date(2019, 1, 12),
       valor: 5017.15,
@@ -34,6 +36,7 @@ export class InMemoryDataService implements InMemoryDbService {
       cnpj: '28.014.107/0001-08',
       tipo: TipoPagamento.entrada
     }, {
+      id: 3,
       beneficiario: 'AGILLITAS',
       dtVencimento: new Date(2019, 1, 21),
       valor: 17557.10,
@@ -44,6 +47,7 @@ export class InMemoryDataService implements InMemoryDbService {
       cnpj: '13.776.742/0001-55',
       tipo: TipoPagamento.entrada
     }, {
+      id: 4,
       beneficiario: 'ABYARA',
       dtVencimento: new Date(2019, 1, 21),
       valor: 7525.75,
@@ -54,6 +58,7 @@ export class InMemoryDataService implements InMemoryDbService {
       cnpj: '09.564.811/0001-90',
       tipo: TipoPagamento.entrada
     }, {
+      id: 5,
       beneficiario: 'ABYARA',
       dtVencimento: new Date(2019, 2, 15),
       valor: 1250.00,
@@ -64,6 +69,7 @@ export class InMemoryDataService implements InMemoryDbService {
       cnpj: '09.564.811/0001-90',
       tipo: TipoPagamento.parcela
     }, {
+      id: 6,
       beneficiario: 'MAXCASA XXVII EMP IMOB LTDA',
       dtVencimento: new Date(2019, 2, 15),
       valor: 1254.96,
@@ -74,6 +80,7 @@ export class InMemoryDataService implements InMemoryDbService {
       cnpj: '13.070.428/0001-52',
       tipo: TipoPagamento.parcela
     }, {
+      id: 7,
       beneficiario: 'ABYARA',
       dtVencimento: new Date(2019, 3, 15),
       valor: 1150.00,
@@ -84,6 +91,7 @@ export class InMemoryDataService implements InMemoryDbService {
       cnpj: '09.564.811/0001-90',
       tipo: TipoPagamento.parcela
     }, {
+      id: 8,
       beneficiario: 'MAXCASA XXVII EMP IMOB LTDA',
       dtVencimento: new Date(2019, 3, 15),
       valor: 1257.41,
@@ -94,6 +102,7 @@ export class InMemoryDataService implements InMemoryDbService {
       cnpj: '13.070.428/0001-52',
       tipo: TipoPagamento.parcela
     }, {
+      id: 9,
       beneficiario: 'ABYARA',
       dtVencimento: new Date(2019, 4, 15),
       valor: 588.10,
@@ -104,6 +113,7 @@ export class InMemoryDataService implements InMemoryDbService {
       cnpj: '09.564.811/0001-90',
       tipo: TipoPagamento.parcela
     }, {
+      id: 10,
       beneficiario: 'MAXCASA XXVII EMP IMOB LTDA',
       dtVencimento: new Date(2019, 4, 15),
       valor: 1923.22,
@@ -114,6 +124,7 @@ export class InMemoryDataService implements InMemoryDbService {
       cnpj: '13.070.428/0001-52',
       tipo: TipoPagamento.parcela
     }, {
+      id: 11,
       beneficiario: 'MAXCASA XXVII EMP IMOB LTDA',
       dtVencimento: new Date(2019, 5, 15),
       valor: 2531.91,
@@ -124,6 +135,7 @@ export class InMemoryDataService implements InMemoryDbService {
       cnpj: '13.070.428/0001-52',
       tipo: TipoPagamento.parcela
     }, {
+      id: 12,
       beneficiario: 'MAXCASA XXVII EMP IMOB LTDA',
       dtVencimento: new Date(2019, 6, 15),
       valor: 2531.91,
@@ -134,6 +146,7 @@ export class InMemoryDataService implements InMemoryDbService {
       cnpj: '13.070.428/0001-52',
       tipo: TipoPagamento.parcela
     }, {
+      id: 13,
       beneficiario: 'MAXCASA XXVII EMP IMOB LTDA',
       dtVencimento: new Date(2019, 7, 1),
       valor: 2531.91,

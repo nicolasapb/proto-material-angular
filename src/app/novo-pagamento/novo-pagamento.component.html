@@ -1,44 +1,49 @@
 <h1 mat-dialog-title>Novo Pagamento</h1>
-<div mat-dialog-content>
+
+mat
+
+<mat-dialog-content  [formGroup]="form">
   <p>Cadastro de novo pagamento</p>
   <mat-form-field>
-    <input matInput [(ngModel)]="data.beneficiario" placeholder="Beneficiário" required>
+    <input matInput placeholder="Beneficiário" required formControlName="beneficiario"  [value]="form.get('beneficiario').value">
   </mat-form-field>  
   <mat-form-field> 
-    <input matInput [(ngModel)]="data.dtVencimento" [matDatepicker]="dtVencimento" placeholder="Data de Vencimento" required> 
+    <input matInput [matDatepicker]="dtVencimento" placeholder="Data de Vencimento" required formControlName="dtVencimento"> 
     <mat-datepicker-toggle matSuffix [for]="dtVencimento"></mat-datepicker-toggle>
     <mat-datepicker #dtVencimento></mat-datepicker>
   </mat-form-field>  
   <mat-form-field>
-    <input matInput [(ngModel)]="data.valor" placeholder="Valor" required type="number">
+    <input matInput placeholder="Valor" required type="number" formControlName="valor">
   </mat-form-field>   
   <mat-form-field> 
-    <input matInput [(ngModel)]="data.dtPagamento" [matDatepicker]="dtPagamento" placeholder="Data de Pagamento" required> 
+    <input matInput [matDatepicker]="dtPagamento" placeholder="Data de Pagamento" required formControlName="dtPagamento"> 
     <mat-datepicker-toggle matSuffix [for]="dtPagamento"></mat-datepicker-toggle>
     <mat-datepicker #dtPagamento></mat-datepicker>    
   </mat-form-field>  
   <mat-form-field>
-    <input matInput [(ngModel)]="data.valorPago" placeholder="Valor Pago" required>
+    <input matInput placeholder="Valor Pago" required type="number" formControlName="valorPago">
   </mat-form-field>  
   <mat-form-field>
-    <input matInput [(ngModel)]="data.autenticacao" placeholder="Autenticação" required>
+    <input matInput placeholder="Autenticação" required formControlName="autenticacao">
   </mat-form-field>  
   <mat-form-field>
-    <input matInput [(ngModel)]="data.contaDestino" placeholder="Conta Destino" required>
+    <input matInput placeholder="Conta Destino" required formControlName="contaDestino">
   </mat-form-field>  
   <mat-form-field>
-    <input matInput [(ngModel)]="data.cnpj" placeholder="CNPJ" required>
+    <input matInput placeholder="CNPJ" required formControlName="cnpj">
   </mat-form-field>  
   <!-- <mat-form-field>
     <mat-label>Tipo do Pagamento</mat-label>
     <mat-select>
-      <mat-option *ngFor="let tipo of tiposPagam" [value]="food.value">
+      <mat-option *ngFor="let tipo of tipoPagamento" [value]="tipo.value">
         {{food.viewValue}}
       </mat-option>
     </mat-select>
   </mat-form-field>  -->
-</div>
-<div mat-dialog-actions>
+</mat-dialog-content >
+
+
+<mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancelar</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
-</div>
+  <button mat-button [disabled]="!form.valid" (click)="onSave()">Save</button>
+</mat-dialog-actions>
