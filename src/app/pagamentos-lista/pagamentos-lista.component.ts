@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core'; 
+import { Component, OnInit, Input, OnChanges, SimpleChanges, ApplicationRef, Output, EventEmitter } from '@angular/core';
 import { PagamentosLista } from '../pagamentos-lista';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NovoPagamentoComponent } from '../novo-pagamento/novo-pagamento.component';
@@ -19,17 +19,19 @@ export class PagamentosListaComponent implements OnChanges {
 
   novoPagamento: PagamentosLista;
 
+  @Output() updateData = new EventEmitter();
+
   constructor(
-    public dialog: MatDialog, 
+    public dialog: MatDialog,
     private pagamentoServie: PagamentosService,
-    private cd: ChangeDetectorRef
+    private appRef: ApplicationRef
     ) { }
 
-  ngOnChanges(changes: SimpleChanges): void { 
+  ngOnChanges(changes: SimpleChanges): void {
     if (changes.pagamentosLista && changes.pagamentosLista.currentValue) {
       this.pagamentosLista = changes.pagamentosLista.currentValue;
-      console.log('atualizado', this.pagamentosLista)
     }
+    console.log('ngOnChanges');
   }
 
   openDialog(): void {
@@ -41,10 +43,14 @@ export class PagamentosListaComponent implements OnChanges {
 
     const dialogRef = this.dialog.open(NovoPagamentoComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe(novoPagamento => { 
-      this.novoPagamento = novoPagamento as PagamentosLista; 
+    dialogRef.afterClosed().subscribe(novoPagamento => {
+      this.novoPagamento = novoPagamento as PagamentosLista;
       this.adicionaNovoPagamento(this.novoPagamento);
+      console.log('afterClosed');
     });
+
+    console.log('openDialog');
+    this.appRef.tick();
   }
 
   adicionaNovoPagamento(novoPagamento: PagamentosLista) {
@@ -53,8 +59,12 @@ export class PagamentosListaComponent implements OnChanges {
      this.pagamentoServie.addPagamento(novoPagamento)
       .subscribe(novoPagamentoAdicionado => {
         this.pagamentosLista.push(novoPagamentoAdicionado);
-        console.log(this.pagamentosLista);
-        });
+        console.log('addPagamento');
+        this.updateData.emit(null);
+      });
+
+     console.log('adicionaNovoPagamento');
+     this.appRef.tick();
   }
 }
 

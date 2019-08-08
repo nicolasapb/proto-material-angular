@@ -3,7 +3,7 @@ import { Economias } from '../economias';
 import { PagamentosLista } from '../pagamentos-lista';
 import { Resumo } from '../resumo';
 import { Savings } from '../savings';
-import { PagamentosService } from '../pagamentos-service/pagamentos.service'; 
+import { PagamentosService } from '../pagamentos-service/pagamentos.service';
 
 @Component({
   selector: 'app-pagamentos',
@@ -25,6 +25,7 @@ export class PagamentosComponent implements OnInit {
   constructor(private pagamentosService: PagamentosService) { }
 
   ngOnInit() {
+    console.log('ngOnInit - pagametnos');
     this.getEconomias();
     this.getPagamentosList();
     this.getResumo();

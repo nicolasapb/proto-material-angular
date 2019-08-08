@@ -21,6 +21,7 @@ export class NovoPagamentoComponent {
     private dialogRef: MatDialogRef<NovoPagamentoComponent>,
     // @Inject(MAT_DIALOG_DATA) public data: PagamentosLista
   ) {
+    console.log('constructor dialog');
     this.form = this.formBuilder.group({
       beneficiario: [this.data.beneficiario, Validators.required],
       dtVencimento: [this.data.dtVencimento, Validators.required],
@@ -39,6 +40,7 @@ export class NovoPagamentoComponent {
   }
 
   onSave(): void {
+    console.log('onSave dialog');
     this.data = this.form.value; 
     this.dialogRef.close(this.data);
   }

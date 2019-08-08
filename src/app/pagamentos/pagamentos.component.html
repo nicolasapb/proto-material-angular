@@ -13,7 +13,7 @@
         <app-pagamentos-resumo [resumo]="resumo"></app-pagamentos-resumo>
     </div>
     <div class="pagamentos-lista">
-        <app-pagamentos-lista [pagamentosLista]="pagamentosLista"></app-pagamentos-lista>
+        <app-pagamentos-lista [pagamentosLista]="pagamentosLista" (updateData)="ngOnInit()"></app-pagamentos-lista>
     </div>
     <div class="savings">
         <app-savings [savings]="savings" [meta]="metaParcelaUnica"></app-savings>
