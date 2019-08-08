@@ -31,7 +31,6 @@ export class PagamentosListaComponent implements OnChanges {
     if (changes.pagamentosLista && changes.pagamentosLista.currentValue) {
       this.pagamentosLista = changes.pagamentosLista.currentValue;
     }
-    console.log('ngOnChanges');
   }
 
   openDialog(): void {
@@ -46,10 +45,8 @@ export class PagamentosListaComponent implements OnChanges {
     dialogRef.afterClosed().subscribe(novoPagamento => {
       this.novoPagamento = novoPagamento as PagamentosLista;
       this.adicionaNovoPagamento(this.novoPagamento);
-      console.log('afterClosed');
     });
 
-    console.log('openDialog');
     this.appRef.tick();
   }
 
@@ -59,11 +56,9 @@ export class PagamentosListaComponent implements OnChanges {
      this.pagamentoServie.addPagamento(novoPagamento)
       .subscribe(novoPagamentoAdicionado => {
         this.pagamentosLista.push(novoPagamentoAdicionado);
-        console.log('addPagamento');
         this.updateData.emit(null);
       });
 
-     console.log('adicionaNovoPagamento');
      this.appRef.tick();
   }
 }
