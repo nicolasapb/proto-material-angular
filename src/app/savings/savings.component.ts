@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Savings } from '../savings';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-savings',
@@ -18,7 +19,13 @@ export class SavingsComponent implements OnChanges {
   public savingsHeader: any[];
   public savingsHeaderColunas = ['total', 'falta', 'pctTotal', 'pctFalta', 'meta'];
 
-  constructor() { }
+  formNovoValor: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) {
+    this.formNovoValor = this.formBuilder.group({
+      novoValor: []
+    });
+   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.savings && changes.savings.currentValue) {
@@ -40,8 +47,15 @@ export class SavingsComponent implements OnChanges {
     }
   }
 
+  keyDownFunction(event: KeyboardEvent) {
+
+    if (event.code === 'Enter' ) {
+      console.log(event.code, this.formNovoValor.value);
+    }
+  }
+
   getTotal(): void {
-    this.total = this.savings.map(t => t.valor).reduce((acc, value) => acc + value, 0); 
+    this.total = this.savings.map(t => t.valor).reduce((acc, value) => acc + value, 0);
   }
 
   getDif(): void {

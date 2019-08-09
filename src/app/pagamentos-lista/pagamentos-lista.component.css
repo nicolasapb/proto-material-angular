@@ -11,12 +11,14 @@ table {
 }
 
 .botoes-lista-pagamento { 
-    display: none; 
+    visibility: hidden; 
     color: lightgray;
     opacity: 0.85;
+    width: 1em;
 }
 
 tr.mat-row:hover .botoes-lista-pagamento {       
-    display: inline-block;
-    margin-left: -5.69em;
+    visibility: visible;
+    /* margin-left: -5.69em; */
+    width: 1em;
 }
