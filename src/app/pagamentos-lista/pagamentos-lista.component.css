@@ -7,5 +7,16 @@ table {
 } 
 
 .mat-cell, .mat-header-cell {
-    padding: 0.5em;
+    padding-right: 0.5em;
+}
+
+.botoes-lista-pagamento { 
+    display: none; 
+    color: lightgray;
+    opacity: 0.85;
+}
+
+tr.mat-row:hover .botoes-lista-pagamento {       
+    display: inline-block;
+    margin-left: -5.69em;
 }

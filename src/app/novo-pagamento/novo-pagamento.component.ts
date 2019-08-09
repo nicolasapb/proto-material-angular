@@ -13,16 +13,22 @@ export class NovoPagamentoComponent {
 
   data = new PagamentosLista();
   form: FormGroup;
-
+  tituloForm: string;
   tipoPagamento: TipoPagamento;
 
   constructor(
     private formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<NovoPagamentoComponent>,
-    // @Inject(MAT_DIALOG_DATA) public data: PagamentosLista
+    @Inject(MAT_DIALOG_DATA) public pagamento: PagamentosLista
   ) {
-    console.log('constructor dialog');
+
+    this.tituloForm = 'Novo Pagamento';
+    if (pagamento) {
+      this.data = pagamento;
+      this.tituloForm = 'Editar Pagamento';
+    }
     this.form = this.formBuilder.group({
+      id: [this.data.id],
       beneficiario: [this.data.beneficiario, Validators.required],
       dtVencimento: [this.data.dtVencimento, Validators.required],
       valor: [this.data.valor, Validators.required],
@@ -31,7 +37,7 @@ export class NovoPagamentoComponent {
       autenticacao: [this.data.autenticacao, Validators.required],
       contaDestino: [this.data.contaDestino, Validators.required],
       cnpj: [this.data.cnpj, Validators.required],
-      tipo: [TipoPagamento.parcela]
+      tipo: [this.data.tipo || TipoPagamento.parcela]
     });
   }
 
@@ -40,8 +46,7 @@ export class NovoPagamentoComponent {
   }
 
   onSave(): void {
-    console.log('onSave dialog');
-    this.data = this.form.value; 
+    this.data = this.form.value;
     this.dialogRef.close(this.data);
   }
 }

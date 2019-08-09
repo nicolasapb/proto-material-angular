@@ -46,6 +46,40 @@ export class PagamentosService {
   }
 
   /**
+   * POST: novo pagamento
+   * @param novoPagamento - novo pagamento a ser adiciondo na lista de pagamentos
+   */
+  addPagamento(novoPagamento: PagamentosLista): Observable<PagamentosLista> {
+    return this.http.post<PagamentosLista>(this.pagamentosListaUrl, novoPagamento, this.httpOptions)
+      .pipe(
+        tap((pagamento: PagamentosLista) => this.log(`added novo Pagamento ${pagamento}`)),
+        catchError(this.handleError<PagamentosLista>('addPagamento'))
+      );
+  }
+
+  /** PUT: update the hero on the server */
+  updatePagamento(pagamento: PagamentosLista): Observable<any> {
+    return this.http.put(this.pagamentosListaUrl, pagamento, this.httpOptions).pipe(
+      tap(_ => this.log(`updated pagamento id=${pagamento.id}`)),
+      catchError(this.handleError<any>('updatePagamento'))
+    );
+  }
+
+  /**
+   * DELETE: remove o pagamento
+   * @param pagamento - pagamento para deletr
+   */
+  removePagamento(pagamento: PagamentosLista): Observable<PagamentosLista> {
+    const id = typeof pagamento === 'number' ? pagamento : pagamento.id;
+    const url = `${this.pagamentosListaUrl}/${id}`;
+
+    return this.http.delete<PagamentosLista>(url, this.httpOptions).pipe(
+      tap(_ => this.log(`deleted pagamento id=${id}`)),
+      catchError(this.handleError<PagamentosLista>('removePagamento'))
+    );
+  }
+
+  /**
    * GET Resumo
    */
   getResumo(): Observable<Resumo[]> {
@@ -62,18 +96,6 @@ export class PagamentosService {
     return this.http.get<Savings[]>(this.savingsUrl)
       .pipe(
         catchError(this.handleError<Savings[]>('getResumo', []))
-      );
-  }
-
-  /**
-   *
-   * @param novoPagamento - novo pagamento a ser adiciondo na lista de pagamentos
-   */
-  addPagamento(novoPagamento: PagamentosLista): Observable<PagamentosLista> {
-    return this.http.post<PagamentosLista>(this.pagamentosListaUrl, novoPagamento, this.httpOptions)
-      .pipe(
-        tap((pagamento: PagamentosLista) => this.log(`added novo Pagamento ${pagamento}`)),
-        catchError(this.handleError<PagamentosLista>('addPagamento'))
       );
   }
 

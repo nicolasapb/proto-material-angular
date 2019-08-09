@@ -24,8 +24,7 @@ export class PagamentosComponent implements OnInit {
 
   constructor(private pagamentosService: PagamentosService) { }
 
-  ngOnInit() {
-    console.log('ngOnInit - pagametnos');
+  ngOnInit() { 
     this.getEconomias();
     this.getPagamentosList();
     this.getResumo();

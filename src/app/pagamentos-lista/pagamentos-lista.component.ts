@@ -12,13 +12,10 @@ import { PagamentosService } from '../pagamentos-service/pagamentos.service';
 export class PagamentosListaComponent implements OnChanges {
 
   public displayedColumns: string[] = [
-    'beneficiario', 'dtVencimento', 'valor', 'dtPagamento', 'valorPago', 'autenticacao', 'contaDestino', 'cnpj'
+     'beneficiario', 'dtVencimento', 'valor', 'dtPagamento', 'valorPago', 'autenticacao', 'contaDestino', 'cnpj', 'edit',
   ];
 
   @Input() pagamentosLista: PagamentosLista[];
-
-  novoPagamento: PagamentosLista;
-
   @Output() updateData = new EventEmitter();
 
   constructor(
@@ -33,33 +30,66 @@ export class PagamentosListaComponent implements OnChanges {
     }
   }
 
-  openDialog(): void {
+  openDialog(pagamento?: PagamentosLista): void {
 
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
 
+    if (pagamento) {
+      dialogConfig.data = {
+        id: pagamento.id,
+        beneficiario: pagamento.beneficiario,
+        dtVencimento: pagamento.dtVencimento,
+        valor: pagamento.valor,
+        dtPagamento: pagamento.dtPagamento,
+        valorPago: pagamento.valorPago,
+        autenticacao: pagamento.autenticacao,
+        contaDestino: pagamento.contaDestino,
+        cnpj: pagamento.cnpj,
+        tipo: pagamento.tipo,
+      };
+    }
+
     const dialogRef = this.dialog.open(NovoPagamentoComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe(novoPagamento => {
-      this.novoPagamento = novoPagamento as PagamentosLista;
-      this.adicionaNovoPagamento(this.novoPagamento);
+    dialogRef.afterClosed().subscribe(pagamentoRetorno => {
+
+      if (!pagamentoRetorno) { return; }
+
+      if (this.pagamentosLista.find( achou => pagamentoRetorno.id === achou.id )) {
+        const modPagamento = pagamentoRetorno as PagamentosLista;
+        this.modificaPagamento(modPagamento);
+      } else {
+        const novoPagamento = pagamentoRetorno as PagamentosLista;
+        this.adicionaNovoPagamento(novoPagamento);
+      }
+
     });
 
     this.appRef.tick();
   }
 
   adicionaNovoPagamento(novoPagamento: PagamentosLista) {
-     if (!novoPagamento) { return; }
-
      this.pagamentoServie.addPagamento(novoPagamento)
-      .subscribe(novoPagamentoAdicionado => {
-        this.pagamentosLista.push(novoPagamentoAdicionado);
-        this.updateData.emit(null);
-      });
+      .subscribe(_ => this.updateData.emit(null));
 
      this.appRef.tick();
+  }
+
+  editItem(item: PagamentosLista): void {
+    this.openDialog(item);
+  }
+
+  modificaPagamento(modPagamento: PagamentosLista) {
+    this.pagamentoServie.updatePagamento(modPagamento)
+      .subscribe( _ => this.updateData.emit(null) );
+  }
+
+  deleteItem(item: PagamentosLista): void {
+    this.pagamentoServie.removePagamento(item)
+      .subscribe( _ => this.updateData.emit(null));
   }
 }
 
