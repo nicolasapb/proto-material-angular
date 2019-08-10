@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
-import { Economias } from './economias';
-import { PagamentosLista } from './pagamentos-lista';
-import { TipoPagamento } from './TipoPagamento';
-import { Resumo } from './resumo';
-import { Savings } from './savings';
+import { Economias } from '../app/models/economias';
+import { PagamentosLista } from '../app/models/pagamentos-lista';
+import { TipoPagamento } from '../app/models/TipoPagamento';
+import { Resumo } from '../app/models/resumo';
+import { Savings } from '../app/models/savings';
+import { Caixa } from '../app/models/caixa';
 
 @Injectable({
   providedIn: 'root'
@@ -269,11 +270,24 @@ export class InMemoryDataService implements InMemoryDbService {
       tesouro: 25461.10
     };
 
+    const caixa: Caixa = {
+      ppr: 16000,
+      carro: 50000,
+      prev: 9300.42,
+      economias: {
+        poupanca: 20888.58,
+        fgts: 60000,
+        cdb: 36000,
+        tesouro: 25500
+      }
+    };
+
     return {
       economias,
       pagamentosLista,
       resumo,
-      savings
+      savings,
+      caixa
     };
   }
 }

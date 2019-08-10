@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Label } from 'ng2-charts';
 import { ChartOptions, ChartType } from 'chart.js';
-import { Economias } from '../economias';
+import { Economias } from '../models/economias';
 
 @Component({
   selector: 'app-economias',

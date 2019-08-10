@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { Savings } from '../savings';
+import { Savings } from '../models/savings';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({

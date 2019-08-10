@@ -1,5 +1,5 @@
-import { PagamentosLista } from '../pagamentos-lista';
-import { TipoPagamento } from '../TipoPagamento';
+import { PagamentosLista } from '../../app/models/pagamentos-lista';
+import { TipoPagamento } from '../../app/models/TipoPagamento';
 
 export const PAGAMENTOS_LISTA: PagamentosLista[] = [
     {

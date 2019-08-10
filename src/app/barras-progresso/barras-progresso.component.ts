@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { Resumo } from '../resumo';
-import { PagamentosLista } from '../pagamentos-lista';
-import { Savings } from '../savings';
-import { TipoPagamento } from '../TipoPagamento';
+import { Resumo } from '../models/resumo';
+import { PagamentosLista } from '../models/pagamentos-lista';
+import { Savings } from '../models/savings';
+import { TipoPagamento } from '../models/TipoPagamento';
 
 @Component({
   selector: 'app-barras-progresso',

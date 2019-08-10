@@ -1,5 +1,5 @@
-import { Resumo } from '../resumo';
-import { TipoPagamento } from '../TipoPagamento';
+import { Resumo } from '../../app/models/resumo';
+import { TipoPagamento } from '../../app/models/TipoPagamento';
 
 export const RESUMO: Resumo[] = [
     {tipoDeParcela: 'Entrada', qtdParcelas: 1, valor: 60000.00, total: 60000.00,

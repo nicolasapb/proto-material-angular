@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, ApplicationRef, Output, EventEmitter } from '@angular/core';
-import { PagamentosLista } from '../pagamentos-lista';
+import { PagamentosLista } from '../models/pagamentos-lista';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NovoPagamentoComponent } from '../novo-pagamento/novo-pagamento.component';
 import { PagamentosService } from '../pagamentos-service/pagamentos.service';

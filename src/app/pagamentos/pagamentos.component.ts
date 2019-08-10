@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Economias } from '../economias';
-import { PagamentosLista } from '../pagamentos-lista';
-import { Resumo } from '../resumo';
-import { Savings } from '../savings';
+import { Economias } from '../models/economias';
+import { PagamentosLista } from '../models/pagamentos-lista';
+import { Resumo } from '../models/resumo';
+import { Savings } from '../models/savings';
 import { PagamentosService } from '../pagamentos-service/pagamentos.service';
 
 @Component({
@@ -11,8 +11,6 @@ import { PagamentosService } from '../pagamentos-service/pagamentos.service';
   styleUrls: ['./pagamentos.component.css']
 })
 export class PagamentosComponent implements OnInit {
-
-  public titulo = 'Pagamentos';
 
   public economias: Economias;
   public pagamentosLista: PagamentosLista[];

@@ -14,6 +14,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatListModule} from '@angular/material/list';
+import {MatDividerModule} from '@angular/material/divider';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,8 +30,9 @@ import { EconomiasComponent } from './economias/economias.component';
 import { ChartsModule } from 'ng2-charts';
 import { ParcelasComponent } from './parcelas/parcelas.component';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './in-memory-data.service';
+import { InMemoryDataService } from '../api/in-memory-data.service';
 import { NovoPagamentoComponent } from './novo-pagamento/novo-pagamento.component';
+import { CaixaComponent } from './caixa/caixa.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +45,8 @@ import { NovoPagamentoComponent } from './novo-pagamento/novo-pagamento.componen
     SavingsComponent,
     EconomiasComponent,
     ParcelasComponent,
-    NovoPagamentoComponent
+    NovoPagamentoComponent,
+    CaixaComponent
   ],
   imports: [
     BrowserModule,
@@ -62,6 +67,9 @@ import { NovoPagamentoComponent } from './novo-pagamento/novo-pagamento.componen
     MatDatepickerModule,
     MatNativeDateModule,
     ReactiveFormsModule,
+    MatToolbarModule,
+    MatListModule,
+    MatDividerModule,
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.

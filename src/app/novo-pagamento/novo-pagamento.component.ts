@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { PagamentosLista } from '../pagamentos-lista';
-import { TipoPagamento } from '../TipoPagamento';
+import { PagamentosLista } from '../models/pagamentos-lista';
+import { TipoPagamento } from '../models/TipoPagamento';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({

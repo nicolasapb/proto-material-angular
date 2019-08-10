@@ -1,17 +1,25 @@
+<mat-toolbar>
+  <span style="margin-left: 12.5%">{{ pagina | uppercase }}</span> 
+</mat-toolbar>
 <mat-sidenav-container>
-    <mat-sidenav mode="side" opened>Sidenav content</mat-sidenav>
-    <mat-sidenav-content>
-     <span [ngSwitch]="pagina">
-     <div *ngSwitchCase="'pagamentos'">
-        <app-pagamentos></app-pagamentos>
-     </div>
-     <div *ngSwitchCase="'caixa'">
-        caixa
-     </div>
-     <div *ngSwitchDefault>
-        main
-     </div>
-     </span>
-    </mat-sidenav-content>
+   <mat-sidenav mode="side" opened> 
+      <mat-list>  
+         <mat-list-item><button mat-button (click)="pagina = 'pagamentos'">pagamentos</button></mat-list-item>  
+         <mat-list-item><button mat-button (click)="pagina = 'caixa'">caixa</button></mat-list-item>   
+      </mat-list>
+   </mat-sidenav>
+   <mat-sidenav-content>
+   <span [ngSwitch]="pagina">
+   <div *ngSwitchCase="'pagamentos'">
+      <app-pagamentos></app-pagamentos>
+   </div>
+   <div *ngSwitchCase="'caixa'">
+      <app-caixa></app-caixa>
+   </div>
+   <div *ngSwitchDefault>
+      <app-pagamentos></app-pagamentos>
+   </div>
+   </span>
+   </mat-sidenav-content>
 </mat-sidenav-container>
   

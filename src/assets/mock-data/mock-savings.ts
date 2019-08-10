@@ -1,4 +1,4 @@
-import { Savings } from '../savings';
+import { Savings } from '../../app/models/savings';
 
 export const SAVINGS: Savings[] = [
     { valor: 5208.54},
