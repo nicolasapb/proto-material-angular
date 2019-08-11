@@ -1,0 +1,23 @@
+.caixa-card, .econmias-card, .total-entrada-card, .simulacao-card  {
+    margin-top: 2em; 
+    margin-left: 2em;  
+    width: fit-content;
+}
+
+div.caixa-economias, div.caixa-meta, div.total-entrada { 
+    width: fit-content;
+    float: left;
+}
+
+div.simulacao { 
+    width: fit-content;
+    clear: both;
+}
+
+.simulacao-card {
+    margin-bottom: 2em;
+}
+
+.botao-caixa div {
+    padding: 0;
+}

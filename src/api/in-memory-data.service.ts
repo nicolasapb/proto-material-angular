@@ -6,6 +6,7 @@ import { TipoPagamento } from '../app/models/TipoPagamento';
 import { Resumo } from '../app/models/resumo';
 import { Savings } from '../app/models/savings';
 import { Caixa } from '../app/models/caixa';
+import { Simulacao } from 'src/app/models/simulacao';
 
 @Injectable({
   providedIn: 'root'
@@ -274,12 +275,10 @@ export class InMemoryDataService implements InMemoryDbService {
       ppr: 16000,
       carro: 50000,
       prev: 9300.42,
-      economias: {
-        poupanca: 20888.58,
-        fgts: 60000,
-        cdb: 36000,
-        tesouro: 25500
-      }
+      poupanca: 20888.58,
+      fgts: 60000,
+      cdb: 36000,
+      tesouro: 25500
     };
 
     return {

@@ -1,7 +1,10 @@
 import { Economias } from './economias';
 
 export class Caixa {
-    economias: Economias;
+    poupanca: number;
+    fgts: number;
+    cdb: number;
+    tesouro: number;
     ppr: number;
     carro: number;
     prev: number;
