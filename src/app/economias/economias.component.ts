@@ -31,7 +31,7 @@ export class EconomiasComponent implements OnChanges {
   public pieChartLabels: Label[] = ['Poupança', 'FGTS', 'CDB', 'Tesouro'];
   public pieChartData: number[] = [0, 0, 0, 0];
   public pieChartType: ChartType = 'pie';
-  public pieChartLegend = false;
+  public pieChartLegend = true;
   public pieChartColors = [
     {
       backgroundColor: ['rgba(255,0,0,0.5)', 'rgba(0,255,0,0.5)', 'rgba(0,0,255,0.5)', 'rgba(255,255,0,0.5)'],

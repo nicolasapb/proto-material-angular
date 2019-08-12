@@ -6,9 +6,12 @@
 .resumo, .pagamentos-lista, .savings, .parcelas, .economias {
     margin-top: 2em; 
     margin-left: 2em;  
-    width: fit-content; 
 } 
 
 .economias {
     margin-bottom: 2em;
+}
+
+.tiles {
+    display: inline-flex;
 }

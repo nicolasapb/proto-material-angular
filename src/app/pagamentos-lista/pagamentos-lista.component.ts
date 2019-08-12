@@ -12,7 +12,7 @@ import { PagamentosService } from '../pagamentos-service/pagamentos.service';
 export class PagamentosListaComponent implements OnChanges {
 
   public displayedColumns: string[] = [
-     'beneficiario', 'dtVencimento', 'valor', 'dtPagamento', 'valorPago', 'autenticacao', 'contaDestino', 'cnpj', 'edit',
+     'beneficiario', 'edit', 'dtVencimento', 'valor', 'dtPagamento', 'valorPago', 'autenticacao', 'contaDestino', 'cnpj',
   ];
 
   @Input() pagamentosLista: PagamentosLista[];

@@ -4,6 +4,7 @@
   
 table {
     width: fit-content;
+    white-space: nowrap;
 } 
 
 .mat-cell, .mat-header-cell {
@@ -12,9 +13,12 @@ table {
 
 .botoes-lista-pagamento { 
     visibility: hidden; 
-    color: lightgray;
+    color: white;
     opacity: 0.85;
     width: 1em;
+}
+tr.mat-row:hover {
+    background-color: lightgray;
 }
 
 tr.mat-row:hover .botoes-lista-pagamento {       

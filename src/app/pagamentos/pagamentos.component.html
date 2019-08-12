@@ -1,5 +1,6 @@
 <!-- <h1 style="text-align: center">{{ titulo }}</h1> -->
 <div class="pagamentos-container"> 
+
     <div class="barras-progresso">  
         <app-barras-progresso 
             [resumo]="resumo" 
@@ -9,19 +10,32 @@
             [metaParcelas]="metaParcelas">
         </app-barras-progresso> 
     </div>
-    <div class="resumo">
-        <app-pagamentos-resumo [resumo]="resumo"></app-pagamentos-resumo>
+
+    <div class="tiles">
+        <div class="tile-1">
+            <div class="resumo">
+                <app-pagamentos-resumo [resumo]="resumo"></app-pagamentos-resumo>
+            </div>      
+            
+            <div class="savings">
+                <app-savings [savings]="savings" [meta]="metaParcelaUnica"></app-savings>
+            </div>
+
+            <div class="parcelas">
+                <app-parcelas [pagamentosLista]="pagamentosLista" [meta]="metaParcelas"></app-parcelas>
+            </div>            
+
+        </div>
+
+        <div class="tile-2">
+            <div class="pagamentos-lista">
+                <app-pagamentos-lista [pagamentosLista]="pagamentosLista" (updateData)="ngOnInit()"></app-pagamentos-lista>
+            </div>            
+
+            <div class="economias">
+                <app-economias [economias]="economias"></app-economias>
+            </div> 
+        </div>
     </div>
-    <div class="pagamentos-lista">
-        <app-pagamentos-lista [pagamentosLista]="pagamentosLista" (updateData)="ngOnInit()"></app-pagamentos-lista>
-    </div>
-    <div class="savings">
-        <app-savings [savings]="savings" [meta]="metaParcelaUnica"></app-savings>
-    </div>
-    <div class="parcelas">
-        <app-parcelas [pagamentosLista]="pagamentosLista" [meta]="metaParcelas"></app-parcelas>
-    </div>
-    <div class="economias">
-        <app-economias [economias]="economias"></app-economias>
-    </div>
+
 </div>
