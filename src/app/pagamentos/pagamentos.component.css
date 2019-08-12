@@ -7,11 +7,8 @@
     margin-top: 2em; 
     margin-left: 2em;  
 } 
-
-.economias {
-    margin-bottom: 2em;
-}
-
+ 
 .tiles {
     display: inline-flex;
+    margin-bottom: 2em;
 }
