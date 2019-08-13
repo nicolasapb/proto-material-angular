@@ -7,7 +7,7 @@ export class Simulacao {
     financiamento: number;
     pctFinanciamento: number;
     reforma: number;
-    vlParcela: number;
-    finTaxas: string;
-    comporRenda: string;
+    vlParcela?: number;
+    finTaxas?: string;
+    comporRenda?: string;
 }

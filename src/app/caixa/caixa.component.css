@@ -25,3 +25,33 @@ div.simulacao {
 .botao-caixa div {
     padding: 0;
 }
+
+
+.simulacao-card {
+    max-width: fit-content;
+  }
+  
+table.tabela-simulacao {
+    width: fit-content;
+    white-space: nowrap;
+} 
+
+.mat-cell, .mat-header-cell {
+    padding-right: 0.5em;
+}
+
+/* .botoes-lista-pagamento { 
+    visibility: hidden; 
+    color: white;
+    opacity: 0.85;
+    width: 1em;
+} */
+
+tr.mat-row:hover {
+    background-color: lightgray;
+}
+
+/* tr.mat-row:hover .botoes-lista-pagamento {       
+    visibility: visible; 
+    width: 1em;
+} */
