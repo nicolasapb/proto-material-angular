@@ -2,6 +2,7 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/cor
 import { Label } from 'ng2-charts';
 import { ChartOptions, ChartType } from 'chart.js';
 import { Economias } from '../models/economias';
+import { PagamentosService } from '../pagamentos-service/pagamentos.service';
 
 @Component({
   selector: 'app-economias',
@@ -38,12 +39,17 @@ export class EconomiasComponent implements OnChanges {
     },
   ];
 
-  constructor() { }
+  constructor(private service: PagamentosService) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.economias && changes.economias.currentValue) {
       this.economias = changes.economias.currentValue;
-      this.pieChartData = [this.economias.poupanca, this.economias.fgts, this.economias.cdb, this.economias.tesouro];
+      this.service.getSavings()
+        .subscribe(savings => {
+          this.economias.poupanca = savings.map(t => t.valor)
+            .reduce((acc, value) => acc + value, 0);
+          this.pieChartData = [this.economias.poupanca, this.economias.fgts, this.economias.cdb, this.economias.tesouro];
+          });
     }
   }
 

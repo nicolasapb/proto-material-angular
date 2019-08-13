@@ -1,5 +1,5 @@
 export class Economias {
-    poupanca: number;
+    poupanca?: number;
     fgts: number;
     cdb: number;
     tesouro: number;

@@ -22,7 +22,7 @@ export class PagamentosComponent implements OnInit {
 
   constructor(private pagamentosService: PagamentosService) { }
 
-  ngOnInit() { 
+  ngOnInit() {
     this.getEconomias();
     this.getPagamentosList();
     this.getResumo();
@@ -46,7 +46,9 @@ export class PagamentosComponent implements OnInit {
 
   getSavings(): void {
     this.pagamentosService.getSavings()
-        .subscribe(savings =>  this.savings = savings);
+        .subscribe(savings =>  {
+          this.savings = savings;
+        });
   }
 
 }

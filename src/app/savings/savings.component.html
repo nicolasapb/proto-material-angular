@@ -35,10 +35,9 @@
             <ng-container matColumnDef="valor"> 
                 <td mat-cell *matCellDef="let row"> {{row.valor | currency:'BRL'}} </td>
                 <td mat-footer-cell *matFooterCellDef>
-                    <mat-dialog-content  [formGroup]="formNovoValor" (keydown)="keyDownFunction($event)">
+                    <mat-dialog-content  [formGroup]="formNovoValor" (keydown)="keyDownFunction($event)" >
                         <mat-form-field>
                             <input matInput placeholder="valor" type="number" formControlName="novoValor" >
-                            <span matPrefix>R$&nbsp;</span>
                         </mat-form-field>
                     </mat-dialog-content>
                 </td>
@@ -51,7 +50,8 @@
                         <button mat-icon-button (click)="deleteItem(item)"><mat-icon>delete</mat-icon></button> 
                     </span>                              
                 </td>
-                <td mat-footer-cell *matFooterCellDef></td>
+                <td mat-footer-cell *matFooterCellDef> 
+                </td>
             </ng-container> 
             
             <tr mat-row *matRowDef="let row; columns: ['valor', 'edit'];"></tr>

@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { Savings } from '../models/savings';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { PagamentosService } from '../pagamentos-service/pagamentos.service';
 
 @Component({
   selector: 'app-savings',
@@ -12,16 +13,22 @@ export class SavingsComponent implements OnChanges {
   @Input() savings: Savings[];
   @Input() meta: number;
 
+  @Output() updateData = new EventEmitter();
+
   public total: number;
   public falta: number;
   public pctFalta: number;
   public pctTotal: number;
+  public novoValor: number;
   public savingsHeader: any[];
   public savingsHeaderColunas = ['total', 'falta', 'pctTotal', 'pctFalta', 'meta'];
 
   formNovoValor: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+      private formBuilder: FormBuilder,
+      private service: PagamentosService
+    ) {
     this.formNovoValor = this.formBuilder.group({
       novoValor: []
     });
@@ -49,17 +56,32 @@ export class SavingsComponent implements OnChanges {
 
   keyDownFunction(event: KeyboardEvent) {
 
-    if (event.code === 'Enter' ) {
-      console.log(event.code, this.formNovoValor.value);
+    if (event.code === 'Enter' && this.formNovoValor.value.novoValor) {
+      console.log(event.code, this.formNovoValor.value.novoValor);
+      const saving = new Savings();
+      saving.valor = this.formNovoValor.value.novoValor;
+      this.addItem(saving);
+      this.formNovoValor.setValue({novoValor: null});
     }
   }
 
   getTotal(): void {
-    this.total = this.savings.map(t => t.valor).reduce((acc, value) => acc + value, 0);
+    this.total = this.savings.map(t => t.valor)
+      .reduce((acc, value) => acc + value, 0);
   }
 
   getDif(): void {
     this.falta = this.meta - this.total;
+  }
+
+  addItem(novoSaving: Savings): void {
+    this.service.addSaving(novoSaving)
+      .subscribe( _ => this.updateData.emit(null));
+  }
+
+  deleteItem(saving): void {
+    this.service.removeSaving(saving)
+      .subscribe( _ => this.updateData.emit(null));
   }
 
 }

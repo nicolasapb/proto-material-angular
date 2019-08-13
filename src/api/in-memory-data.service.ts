@@ -203,69 +203,89 @@ export class InMemoryDataService implements InMemoryDbService {
     ];
 
     const savings: Savings[] = [{
+        id: 1,
         valor: 5208.54
       },
       {
+        id: 2,
         valor: 4000.00
       },
       {
+        id: 3,
         valor: 2800.00
       },
       {
+        id: 4,
         valor: 200.00
       },
       {
+        id: 5,
         valor: 2000.00
       },
       {
+        id: 6,
         valor: 14.92
       },
       {
+        id: 7,
         valor: -300.00
       },
       {
+        id: 8,
         valor: 30.44
       },
       {
+        id: 9,
         valor: 14.97
       },
       {
+        id: 10,
         valor: 2300.00
       },
       {
+        id: 11,
         valor: 16.76
       },
       {
+        id: 12,
         valor: 10.11
       },
       {
+        id: 13,
         valor: 4700.00
       },
       {
+        id: 14,
         valor: 15.03
       },
       {
+        id: 15,
         valor: 25.33
       },
       {
+        id: 16,
         valor: 2300.00
       },
       {
+        id: 17,
         valor: 20.19
       },
       {
+        id: 18,
         valor: 10000.00
       },
       {
+        id: 19,
         valor: 57.96
       },
       {
+        id: 20,
         valor: 1585.75
       }
     ];
 
     const economias: Economias = {
-      poupanca: savings.map(t => t.valor).reduce((acc, value) => acc + value, 0),
+      // poupanca: savings.map(t => t.valor).reduce((acc, value) => acc + value, 0),
       fgts: 55180.34,
       cdb: 35811.54,
       tesouro: 25461.10

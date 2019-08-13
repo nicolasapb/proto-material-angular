@@ -55,7 +55,7 @@ export class PagamentosService {
   addPagamento(novoPagamento: PagamentosLista): Observable<PagamentosLista> {
     return this.http.post<PagamentosLista>(this.pagamentosListaUrl, novoPagamento, this.httpOptions)
       .pipe(
-        tap((pagamento: PagamentosLista) => this.messageHandler.log(`added novo Pagamento ${pagamento}`)),
+        tap((pagamento: PagamentosLista) => this.messageHandler.log(`added novo Pagamento ${pagamento.id}`)),
         catchError(this.messageHandler.handleError<PagamentosLista>('addPagamento'))
       );
   }
@@ -100,6 +100,32 @@ export class PagamentosService {
       .pipe(
         catchError(this.messageHandler.handleError<Savings[]>('getResumo', []))
       );
+  }
+
+  /**
+   * POST: novo saving
+   * @param saving - novo saving a ser adiciondo na lista de savings
+   */
+  addSaving(saving: Savings): Observable<Savings> {
+    return this.http.post<Savings>(this.savingsUrl, saving, this.httpOptions)
+      .pipe(
+        tap((novoSaving: Savings) => this.messageHandler.log(`added novo Savings ${novoSaving.id}`)),
+        catchError(this.messageHandler.handleError<Savings>('addSaving'))
+      );
+  }
+
+  /**
+   * DELETE: remove o saving
+   * @param saving - saving para deletar
+   */
+  removeSaving(saving: Savings): Observable<Savings> {
+    const id = typeof saving === 'number' ? saving : saving.id;
+    const url = `${this.savingsUrl}/${id}`;
+
+    return this.http.delete<Savings>(url, this.httpOptions).pipe(
+      tap( _ => this.messageHandler.log(`deleted saving id=${id}`)),
+      catchError(this.messageHandler.handleError<Savings>('removeSaving'))
+    );
   }
 
 }
