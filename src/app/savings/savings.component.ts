@@ -44,6 +44,9 @@ export class SavingsComponent implements OnChanges {
         this.pctFalta = 0;
       }
       this.pctTotal = 1 - this.pctFalta;
+      if (this.falta < 0) {
+        this.falta = 0;
+      }
       this.savingsHeader = [{
         total: this.total,
         falta: this.falta,

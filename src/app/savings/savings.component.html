@@ -38,6 +38,7 @@
                     <mat-dialog-content  [formGroup]="formNovoValor" (keydown)="keyDownFunction($event)" >
                         <mat-form-field>
                             <input matInput placeholder="valor" type="number" formControlName="novoValor" >
+                            <span matPrefix>R$ &nbsp;</span>
                         </mat-form-field>
                     </mat-dialog-content>
                 </td>

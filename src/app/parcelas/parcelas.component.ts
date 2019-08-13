@@ -29,7 +29,13 @@ export class ParcelasComponent implements OnChanges {
       this.getTotal();
       this.getDif();
       this.pctFalta = this.falta / this.meta;
+      if (this.pctFalta < 0) {
+        this.pctFalta = 0;
+      }
       this.pctTotal = 1 - this.pctFalta;
+      if (this.falta < 0) {
+        this.falta = 0;
+      }
       this.parcelas = [{ total: this.total, falta: this.falta, pctTotal: this.pctTotal, pctFalta: this.pctFalta, meta: this.meta }];
     }
    }
