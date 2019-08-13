@@ -4,12 +4,16 @@
     width: fit-content;
 }
 
+.valores div {
+    display: inline-flex;
+}
+
 div.caixa-economias, div.caixa-meta, div.total-entrada { 
-    width: fit-content;
-    float: left;
+    width: fit-content; 
 }
 
 div.simulacao { 
+    margin-top: 2em;
     width: fit-content;
     clear: both;
 }

@@ -4,6 +4,7 @@ import { CaixaService } from '../caixa-service/caixa.service';
 import { Caixa } from '../models/caixa';
 import { PagamentosService } from '../pagamentos-service/pagamentos.service';
 import { Economias } from '../models/economias';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-caixa',
@@ -12,17 +13,24 @@ import { Economias } from '../models/economias';
 })
 export class CaixaComponent implements OnInit {
 
-  public caixa: Caixa;
+  public caixa: Caixa[];
   public economias: Economias;
   public total = 510381;
   public entrada = 118000;
   public totalCaixa: number;
   public totalEconomias: number;
   public soma = [];
+  public formCaixa: FormGroup;
 
   constructor(
     private caixaService: CaixaService,
-    private pagamentosService: PagamentosService ) { }
+    private pagamentosService: PagamentosService,
+    private formBuilder: FormBuilder,
+    ) {
+      this.formCaixa = this.formBuilder.group({
+        valor: []
+      });
+    }
 
   ngOnInit() {
     this.getCaixa();
@@ -41,36 +49,37 @@ export class CaixaComponent implements OnInit {
     this.pagamentosService.getEconomias()
       .subscribe( economias => {
         this.economias = economias;
-        this.totalEconomias = this.getTotalEconomias();
+        this.pagamentosService.getSavings()
+        .subscribe(savings => {
+          this.economias.poupanca = savings.map(t => t.valor)
+            .reduce((acc, value) => acc + value, 0);
+          this.totalEconomias = this.getTotalEconomias();
+        });
       });
   }
 
   getTotalCaixa(): number {
-    return this.caixa.carro +
-      this.caixa.ppr +
-      this.caixa.prev +
-      this.caixa.cdb +
-      this.caixa.fgts +
-      this.caixa.poupanca +
-      this.caixa.tesouro;
-    }
+    return this.caixa.filter(item => item.cheked === true)
+      .reduce((total, value) => total + value.valor, 0);
+  }
 
-    getTotalEconomias(): number {
-      return this.economias.cdb +
-        this.economias.fgts +
-        this.economias.poupanca +
-        this.economias.tesouro;
-    }
+  getTotalEconomias(): number {
+    return this.economias.cdb +
+      this.economias.fgts +
+      this.economias.poupanca +
+      this.economias.tesouro;
+  }
 
-    getIndexCaixa(i: number, check: boolean) {
-      const keys = Object.keys(this.caixa);
-      console.log(i, keys[i], check);
-      console.log(this.caixa[keys[i]]);
-      if (check) {
-        this.soma.push(this.caixa[keys[i]]);
-      }
-      
-      console.log(this.soma);
+  marcaItemCaixa(item: Caixa, check: boolean) { 
+    const i = this.caixa.indexOf(item, 0);
+    this.caixa[i].cheked = check;
+    this.totalCaixa = this.getTotalCaixa();
+  }
+
+  keyDownFunction(event: KeyboardEvent, item: Caixa) {
+    if (event.code === 'Enter' && this.formCaixa.value.valor) {
+      console.log(event.code, this.formCaixa.value.valor, item);
     }
+  }
 
 }

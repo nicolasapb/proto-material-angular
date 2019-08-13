@@ -291,15 +291,42 @@ export class InMemoryDataService implements InMemoryDbService {
       tesouro: 25461.10
     };
 
-    const caixa: Caixa = {
-      ppr: 16000,
-      carro: 50000,
-      prev: 9300.42,
-      poupanca: 20888.58,
-      fgts: 60000,
-      cdb: 36000,
-      tesouro: 25500
-    };
+    const caixa: Caixa[] = [{
+        id: 1,
+        investimento: 'PPR',
+        valor: 16000,
+        cheked: false,
+      }, {
+        id: 2,
+        investimento: 'Previdência',
+        valor: 9300.42,
+        cheked: false,
+      }, {
+        id: 3,
+        investimento: 'Poupança',
+        valor: 20888.58,
+        cheked: false,
+      }, {
+        id: 4,
+        investimento: 'FGTS',
+        valor: 60000,
+        cheked: false,
+      }, {
+        id: 5,
+        investimento: 'Carro',
+        valor: 50000,
+        cheked: false,
+      }, {
+        id: 6,
+        investimento: 'CDB',
+        valor: 36000,
+        cheked: false,
+      }, {
+        id: 7,
+        investimento: 'Tesouro',
+        valor: 25500,
+        cheked: false,
+      }];
 
     return {
       economias,

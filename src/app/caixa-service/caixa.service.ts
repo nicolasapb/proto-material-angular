@@ -22,10 +22,10 @@ export class CaixaService {
     private http: HttpClient,
     private messageHandler: MessageHandler) { }
 
-  getCaixa(): Observable<Caixa> {
-    return this.http.get<Caixa>(this.caixaUrl)
+  getCaixa(): Observable<Caixa[]> {
+    return this.http.get<Caixa[]>(this.caixaUrl)
       .pipe(
-        catchError(this.messageHandler.handleError<Caixa>('getCaixa'))
+        catchError(this.messageHandler.handleError<Caixa[]>('getCaixa'))
       );
   }
 }

@@ -35,12 +35,12 @@
             <ng-container matColumnDef="valor"> 
                 <td mat-cell *matCellDef="let row"> {{row.valor | currency:'BRL'}} </td>
                 <td mat-footer-cell *matFooterCellDef>
-                    <mat-dialog-content  [formGroup]="formNovoValor" (keydown)="keyDownFunction($event)" >
+                    <form [formGroup]="formNovoValor" (keydown)="keyDownFunction($event)" >
                         <mat-form-field>
                             <input matInput placeholder="valor" type="number" formControlName="novoValor" >
                             <span matPrefix>R$ &nbsp;</span>
                         </mat-form-field>
-                    </mat-dialog-content>
+                    </form>
                 </td>
             </ng-container> 
 

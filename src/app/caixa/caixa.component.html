@@ -1,44 +1,56 @@
 <div class="caixa-container">
-    
-    <div class="caixa-economias">
-        <mat-card class="econmias-card">
-            <mat-list role="ecnomias"  *ngIf="economias">
-                <mat-list-item role="economias-item">Poupança: {{ economias.poupanca | currency:'BRL' }}</mat-list-item>
-                <mat-list-item role="economias-item">FGTS: {{ economias.fgts | currency:'BRL' }}</mat-list-item>
-                <mat-list-item role="economias-item">CDB: {{ economias.cdb | currency:'BRL' }}</mat-list-item>
-                <mat-list-item role="economias-item">Tesouro: {{ economias.tesouro | currency:'BRL' }}</mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item role="economias-item">{{ totalEconomias | currency:'BRL' }}</mat-list-item>
-            </mat-list>
-        </mat-card >
-    </div> 
 
-    <div class="caixa-meta">
-        <mat-card class="caixa-card">
-            <mat-list role="caixa-meta" *ngIf="caixa" class="caixa-list">
-                <mat-list-item role="caixa-meta-item"><mat-checkbox #c (click)="getIndexCaixa(0, !c.checked)">PPR: </mat-checkbox>{{ caixa.ppr  | currency:'BRL' }}</mat-list-item>
-                <mat-list-item role="caixa-meta-item"><mat-checkbox #c (click)="getIndexCaixa(4, !c.checked)">FGTS: {{ caixa.fgts  | currency:'BRL' }}</mat-checkbox></mat-list-item>
-                <mat-list-item role="caixa-meta-item"><mat-checkbox #c (click)="getIndexCaixa(5, !c.checked)">CDB: {{ caixa.cdb  | currency:'BRL' }}</mat-checkbox></mat-list-item>
-                <mat-list-item role="caixa-meta-item"><mat-checkbox #c (click)="getIndexCaixa(6, !c.checked)">Tesouro: {{ caixa.tesouro | currency:'BRL' }}</mat-checkbox></mat-list-item>
-                <mat-list-item role="caixa-meta-item"><mat-checkbox #c (click)="getIndexCaixa(1, !c.checked)">Carro: {{ caixa.carro  | currency:'BRL' }}</mat-checkbox></mat-list-item>
-                <mat-list-item role="caixa-meta-item"><mat-checkbox #c (click)="getIndexCaixa(2, !c.checked)">Previdência: {{ caixa.prev  | currency:'BRL' }}</mat-checkbox></mat-list-item>
-                <mat-list-item role="caixa-meta-item"><mat-checkbox #c (click)="getIndexCaixa(3, !c.checked)">Poupança: {{ caixa.poupanca  | currency:'BRL' }}</mat-checkbox></mat-list-item>            
-                <mat-divider></mat-divider>
-                <mat-list-item role="caixa-meta-item">{{ totalCaixa | currency:'BRL' }}</mat-list-item>
-            </mat-list>            
-        </mat-card>
-    </div> 
+    <div class="valores">
+        <div class="caixa-economias">
+            <mat-card class="econmias-card">
+                <mat-list role="ecnomias"  *ngIf="economias">
+                    <mat-list-item role="economias-item">Poupança: {{ economias.poupanca | currency:'BRL' }}</mat-list-item>
+                    <mat-list-item role="economias-item">FGTS: {{ economias.fgts | currency:'BRL' }}</mat-list-item>
+                    <mat-list-item role="economias-item">CDB: {{ economias.cdb | currency:'BRL' }}</mat-list-item>
+                    <mat-list-item role="economias-item">Tesouro: {{ economias.tesouro | currency:'BRL' }}</mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item role="economias-item">{{ totalEconomias | currency:'BRL' }}</mat-list-item>
+                </mat-list>
+            </mat-card >
+        </div> 
 
-    <div class="total-entrada">
-        <mat-card class="total-entrada-card">            
-            <p>Total: {{ total | currency:'BRL' }}</p>
-            <p>Entrada: {{ entrada | currency:'BRL' }}</p>
-        </mat-card>
-    </div> 
+        <div class="caixa-meta">
+            <mat-card class="caixa-card">
+                <mat-list role="caixa-meta" *ngIf="caixa" class="caixa-list"> 
+                    <mat-list-item *ngFor="let item of caixa"> 
+                        <mat-checkbox #c (click)="marcaItemCaixa(item, !c.checked)">&nbsp;</mat-checkbox>
+                        <span matPrefix>{{ item.investimento }}:&nbsp;R$</span>
+                        <form [formGroup]="formCaixa" (keydown)="keyDownFunction($event, item)" > 
+                            <input matInput name="valor" value="{{ item.valor }}" type="number"  formControlName="valor"> 
+                        </form>
+                    </mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item role="caixa-meta-item">{{ totalCaixa | currency:'BRL' }}</mat-list-item>
+                </mat-list>            
+            </mat-card>
+        </div> 
 
-    <div class="simulacao">
+        <div class="total-entrada">
+            <mat-card class="total-entrada-card">            
+                <p>Total: {{ total | currency:'BRL' }}</p>
+                <p>Entrada: {{ entrada | currency:'BRL' }}</p>
+            </mat-card>
+        </div> 
+
+    </div>
+
+    <div class="simulacao"> 
         <mat-card class="simulacao-card">
-            <p>hello</p>            
+            <mat-card-header>
+                <mat-card-title>Simulação</mat-card-title>
+                <mat-card-subtitle>Data da simulação: <strong>09/07/2019</strong> | Taxa de juros efetiva com bonificação: <strong>7,99</strong> % a.a. <strong>0,64</strong> % a.m. + TR | Custo Efetivo Total (CET) com bonificação: <strong>8,60</strong> % a.a. | <br> Custo Efetivo do Seguro Habitacional (CESH): <strong>2,4584</strong> % | Prazo: <strong>35</strong> anos</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+            
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button>Ok</button>
+            </mat-card-actions>
         </mat-card>
     </div>
 
