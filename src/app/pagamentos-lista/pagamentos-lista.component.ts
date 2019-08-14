@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, ApplicationRef, Output, EventEmitter } from '@angular/core';
 import { PagamentosLista } from '../models/pagamentos-lista';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { NovoPagamentoComponent } from '../novo-pagamento/novo-pagamento.component';
-import { PagamentosService } from '../pagamentos-service/pagamentos.service';
+import { NovoPagamentoComponent } from '../novo-pagamento/novo-pagamento.component'; 
+import { PagamentosListaService } from './pagamentos-lista.service';
 
 @Component({
   selector: 'app-pagamentos-lista',
@@ -19,10 +19,8 @@ export class PagamentosListaComponent implements OnChanges {
   @Output() updateData = new EventEmitter();
 
   constructor(
-    public dialog: MatDialog,
-    private pagamentoServie: PagamentosService,
-    private appRef: ApplicationRef
-    ) { }
+    public dialog: MatDialog, 
+    private pagamentosListaService: PagamentosListaService) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.pagamentosLista && changes.pagamentosLista.currentValue) {
@@ -67,15 +65,11 @@ export class PagamentosListaComponent implements OnChanges {
       }
 
     });
-
-    this.appRef.tick();
   }
 
   adicionaNovoPagamento(novoPagamento: PagamentosLista) {
-     this.pagamentoServie.addPagamento(novoPagamento)
-      .subscribe(_ => this.updateData.emit(null));
-
-     this.appRef.tick();
+     this.pagamentosListaService.addPagamento(novoPagamento)
+      .subscribe(_ => this.updateData.emit(null)); 
   }
 
   editItem(item: PagamentosLista): void {
@@ -83,12 +77,12 @@ export class PagamentosListaComponent implements OnChanges {
   }
 
   modificaPagamento(modPagamento: PagamentosLista) {
-    this.pagamentoServie.updatePagamento(modPagamento)
+    this.pagamentosListaService.updatePagamento(modPagamento)
       .subscribe( _ => this.updateData.emit(null) );
   }
 
   deleteItem(item: PagamentosLista): void {
-    this.pagamentoServie.removePagamento(item)
+    this.pagamentosListaService.removePagamento(item)
       .subscribe( _ => this.updateData.emit(null));
   }
 }

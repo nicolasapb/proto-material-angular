@@ -35,8 +35,7 @@ export class CaixaSimulacaoComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private service: CaixaSimulacaoService,
-    private appRef: ApplicationRef) {
+    private service: CaixaSimulacaoService ) {
     this.formSim = this.formBuilder.group({
       composicao: [{value: null, disabled: true}, [Validators.required]],
       total: [{value: null, disabled: true}, [Validators.required]],

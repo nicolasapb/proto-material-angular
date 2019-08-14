@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Economias } from '../models/economias';
 import { PagamentosLista } from '../models/pagamentos-lista';
 import { Resumo } from '../models/resumo';
-import { Savings } from '../models/savings';
-import { PagamentosService } from '../pagamentos-service/pagamentos.service';
+import { Savings } from '../models/savings'; 
+import { EconomiasService } from '../economias/economias.service';
+import { PagamentosListaService } from '../pagamentos-lista/pagamentos-lista.service';
+import { PagamentosResumoService } from '../pagamentos-resumo/pagamentos-resumo.service';
+import { SavingsService } from '../savings/savings.service';
 
 @Component({
   selector: 'app-pagamentos',
@@ -20,7 +23,11 @@ export class PagamentosComponent implements OnInit {
   public metaParcelaUnica = 25500;
   public metaParcelas = 32500;
 
-  constructor(private pagamentosService: PagamentosService) { }
+  constructor(
+    private economiasService: EconomiasService,
+    private pagamentosListaService: PagamentosListaService,
+    private pagamentosResumoService: PagamentosResumoService,
+    private savingsService: SavingsService) { }
 
   ngOnInit() {
     this.getEconomias();
@@ -30,22 +37,22 @@ export class PagamentosComponent implements OnInit {
   }
 
   getEconomias(): void {
-    this.pagamentosService.getEconomias()
+    this.economiasService.getEconomias()
         .subscribe(economias => this.economias = economias );
   }
 
   getPagamentosList(): void {
-    this.pagamentosService.getPagamentosList()
+    this.pagamentosListaService.getPagamentosList()
         .subscribe(pagamentosLista => this.pagamentosLista = pagamentosLista );
   }
 
   getResumo(): void {
-    this.pagamentosService.getResumo()
+    this.pagamentosResumoService.getResumo()
         .subscribe(resumo => this.resumo = resumo );
   }
 
   getSavings(): void {
-    this.pagamentosService.getSavings()
+    this.savingsService.getSavings()
         .subscribe(savings =>  {
           this.savings = savings;
         });

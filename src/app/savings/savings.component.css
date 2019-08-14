@@ -26,7 +26,6 @@ table.savings-table td {
 }
 
 tr.mat-row:hover .botoes-lista-pagamento {       
-  visibility: visible;
-  /* margin-left: -5.69em; */
+  visibility: visible; 
   width: 1em;
 }

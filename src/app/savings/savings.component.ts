@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { Savings } from '../models/savings';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { PagamentosService } from '../pagamentos-service/pagamentos.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms'; 
+import { SavingsService } from './savings.service';
 
 @Component({
   selector: 'app-savings',
@@ -27,7 +27,7 @@ export class SavingsComponent implements OnChanges {
 
   constructor(
       private formBuilder: FormBuilder,
-      private service: PagamentosService
+      private service: SavingsService
     ) {
     this.formNovoValor = this.formBuilder.group({
       novoValor: []
@@ -82,7 +82,7 @@ export class SavingsComponent implements OnChanges {
       .subscribe( _ => this.updateData.emit(null));
   }
 
-  deleteItem(saving): void {
+  deleteItem(saving: Savings): void {
     this.service.removeSaving(saving)
       .subscribe( _ => this.updateData.emit(null));
   }

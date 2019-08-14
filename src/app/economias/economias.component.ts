@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Label } from 'ng2-charts';
 import { ChartOptions, ChartType } from 'chart.js';
-import { Economias } from '../models/economias';
-import { PagamentosService } from '../pagamentos-service/pagamentos.service';
+import { Economias } from '../models/economias'; 
+import { SavingsService } from '../savings/savings.service';
 
 @Component({
   selector: 'app-economias',
@@ -39,7 +39,7 @@ export class EconomiasComponent implements OnChanges {
     },
   ];
 
-  constructor(private service: PagamentosService) { }
+  constructor(private service: SavingsService) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.economias && changes.economias.currentValue) {

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
-import { CaixaService } from '../caixa-service/caixa.service';
-import { Caixa } from '../models/caixa';
-import { PagamentosService } from '../pagamentos-service/pagamentos.service';
+import { CaixaService } from './caixa.service';
+import { Caixa } from '../models/caixa'; 
 import { Economias } from '../models/economias';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { EconomiasService } from '../economias/economias.service';
+import { SavingsService } from '../savings/savings.service';
 
 @Component({
   selector: 'app-caixa',
@@ -23,8 +24,9 @@ export class CaixaComponent implements OnInit {
   public formCaixa: FormGroup;
 
   constructor(
-    private caixaService: CaixaService,
-    private pagamentosService: PagamentosService,
+    private caixaService: CaixaService, 
+    private economiasService: EconomiasService,
+    private savingsService: SavingsService,
     private formBuilder: FormBuilder ) {
       this.formCaixa = this.formBuilder.group({
         valor: [{value: null}]
@@ -45,10 +47,10 @@ export class CaixaComponent implements OnInit {
   }
 
   getEconomias(): void {
-    this.pagamentosService.getEconomias()
+    this.economiasService.getEconomias()
       .subscribe( economias => {
         this.economias = economias;
-        this.pagamentosService.getSavings()
+        this.savingsService.getSavings()
         .subscribe(savings => {
           this.economias.poupanca = savings.map(t => t.valor)
             .reduce((acc, value) => acc + value, 0);
