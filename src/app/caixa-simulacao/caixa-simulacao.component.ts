@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ApplicationRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { Caixa } from '../models/caixa';
 import { Simulacao } from '../models/simulacao';
+import { CaixaSimulacaoService } from './caixa-simulacao.service';
 
 @Component({
   selector: 'app-caixa-simulacao',
@@ -32,7 +33,10 @@ export class CaixaSimulacaoComponent implements OnInit {
     'comporRenda',
   ];
 
-  constructor(private formBuilder: FormBuilder ) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private service: CaixaSimulacaoService,
+    private appRef: ApplicationRef) {
     this.formSim = this.formBuilder.group({
       composicao: [{value: null, disabled: true}, [Validators.required]],
       total: [{value: null, disabled: true}, [Validators.required]],
@@ -52,7 +56,8 @@ export class CaixaSimulacaoComponent implements OnInit {
   }
 
   getSimulacoes(): void {
-
+    this.service.getSimulacao()
+      .subscribe(simulacoes => this.simulacoes = simulacoes);
   }
 
   addSimulacao(): void {
@@ -84,8 +89,23 @@ export class CaixaSimulacaoComponent implements OnInit {
   }
 
   saveSimulacao(): void {
-    const a = this.formSim.getRawValue();
-    console.log(a);
+    const formValues = this.formSim.getRawValue();
+    console.log(formValues);
+    const novaSimulacao: Simulacao = {
+      composicao: formValues.composicao,
+      total: formValues.total,
+      entrada: formValues.entrada,
+      pctEntrada: formValues.pctEntrada,
+      financiamento: formValues.financiamento,
+      pctFinanciamento: formValues.pctFinanciamento,
+      reforma: formValues.reforma,
+      vlParcela: formValues.vlParcela,
+      finTaxas: formValues.finTaxas,
+      comporRenda: formValues.comporRenda,
+    };
+
+    console.log(novaSimulacao);
+    this.service.postSimulacao(novaSimulacao).subscribe( _ => this.ngOnInit());
     this.formSim.reset();
   }
 

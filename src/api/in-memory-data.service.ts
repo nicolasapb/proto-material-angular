@@ -328,12 +328,20 @@ export class InMemoryDataService implements InMemoryDbService {
         cheked: false,
       }];
 
+    const simulacao: Simulacao[] = [];
+
     return {
       economias,
       pagamentosLista,
       resumo,
       savings,
-      caixa
+      caixa,
+      simulacao
     };
   }
+
+  genId(collection: any[]): number {
+    return collection.length > 0 ? Math.max(...collection.map(val => val.id)) + 1 : 1;
+  }
+
 }
