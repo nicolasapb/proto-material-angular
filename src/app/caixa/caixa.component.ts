@@ -4,8 +4,7 @@ import { CaixaService } from '../caixa-service/caixa.service';
 import { Caixa } from '../models/caixa';
 import { PagamentosService } from '../pagamentos-service/pagamentos.service';
 import { Economias } from '../models/economias';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { Simulacao } from '../models/simulacao';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-caixa',
@@ -22,28 +21,13 @@ export class CaixaComponent implements OnInit {
   public totalEconomias: number;
   public soma = [];
   public formCaixa: FormGroup;
-  public simulacoes: Simulacao[];
-
-  public colunasSimulacao = [
-    'composicao',
-    'total',
-    'entrada',
-    'pctEntrada',
-    'financiamento',
-    'pctFinanciamento',
-    'reforma',
-    'vlParcela',
-    'finTaxas',
-    'comporRenda',
-  ];
 
   constructor(
     private caixaService: CaixaService,
     private pagamentosService: PagamentosService,
-    private formBuilder: FormBuilder,
-    ) {
+    private formBuilder: FormBuilder ) {
       this.formCaixa = this.formBuilder.group({
-        valor: []
+        valor: [{value: null}]
       });
     }
 
@@ -95,33 +79,6 @@ export class CaixaComponent implements OnInit {
     if (event.code === 'Enter' && this.formCaixa.value.valor) {
       console.log(event.code, this.formCaixa.value.valor, item);
     }
-  }
-
-  addSimulacao(): void {
-    const composicao = this.caixa.filter( marcado => marcado.cheked === true )
-      .map( comp => comp.investimento.toUpperCase())
-      .toString();
-
-    const total = this.totalCaixa;
-    const entrada = this.totalCaixa + this.entrada;
-    const pctEntrada = entrada / this.total;
-    const financiamento = this.total - entrada;
-    const pctFinanciamento = 1 - pctEntrada;
-    const caixaFull = this.caixa.reduce((t, value) => t + value.valor, 0);
-    const reforma = caixaFull - total;
-
-    const simulacao: Simulacao = {
-      composicao,
-      total,
-      entrada,
-      pctEntrada,
-      financiamento,
-      pctFinanciamento,
-      reforma
-    };
-
-    console.log(simulacao);
-
   }
 
 }

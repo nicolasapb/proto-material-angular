@@ -1,4 +1,4 @@
-.caixa-card, .econmias-card, .total-entrada-card, .simulacao-card  {
+.caixa-card, .econmias-card, .total-entrada-card {
     margin-top: 2em; 
     margin-left: 2em;  
     width: fit-content;
@@ -18,40 +18,6 @@ div.simulacao {
     clear: both;
 }
 
-.simulacao-card {
-    margin-bottom: 2em;
-}
-
 .botao-caixa div {
     padding: 0;
 }
-
-
-.simulacao-card {
-    max-width: fit-content;
-  }
-  
-table.tabela-simulacao {
-    width: fit-content;
-    white-space: nowrap;
-} 
-
-.mat-cell, .mat-header-cell {
-    padding-right: 0.5em;
-}
-
-/* .botoes-lista-pagamento { 
-    visibility: hidden; 
-    color: white;
-    opacity: 0.85;
-    width: 1em;
-} */
-
-tr.mat-row:hover {
-    background-color: lightgray;
-}
-
-/* tr.mat-row:hover .botoes-lista-pagamento {       
-    visibility: visible; 
-    width: 1em;
-} */

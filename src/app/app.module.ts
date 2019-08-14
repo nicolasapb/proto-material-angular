@@ -36,6 +36,7 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from '../api/in-memory-data.service';
 import { NovoPagamentoComponent } from './novo-pagamento/novo-pagamento.component';
 import { CaixaComponent } from './caixa/caixa.component';
+import { CaixaSimulacaoComponent } from './caixa-simulacao/caixa-simulacao.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { CaixaComponent } from './caixa/caixa.component';
     EconomiasComponent,
     ParcelasComponent,
     NovoPagamentoComponent,
-    CaixaComponent
+    CaixaComponent,
+    CaixaSimulacaoComponent
   ],
   imports: [
     BrowserModule,

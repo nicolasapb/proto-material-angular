@@ -1,0 +1,21 @@
+.simulacao-card  {
+    margin-top: 2em; 
+    margin-left: 2em;  
+    width: fit-content;
+    margin-bottom: 2em;
+    max-width: fit-content;
+}
+
+table.tabela-simulacao {
+    width: fit-content;
+    white-space: nowrap;
+} 
+
+.mat-cell, .mat-header-cell {
+    padding-right: 0.5em;
+} 
+
+tr.mat-row:hover {
+    background-color: lightgray;
+}
+ 
