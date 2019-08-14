@@ -1,25 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatTableModule } from '@angular/material/table';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
-import { MatDialogModule } from '@angular/material/dialog';
-import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatInputModule} from '@angular/material/input';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatListModule} from '@angular/material/list';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatGridListModule} from '@angular/material/grid-list';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -37,6 +21,7 @@ import { InMemoryDataService } from '../api/in-memory-data.service';
 import { NovoPagamentoComponent } from './novo-pagamento/novo-pagamento.component';
 import { CaixaComponent } from './caixa/caixa.component';
 import { CaixaSimulacaoComponent } from './caixa-simulacao/caixa-simulacao.component';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -57,30 +42,11 @@ import { CaixaSimulacaoComponent } from './caixa-simulacao/caixa-simulacao.compo
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatProgressBarModule,
-    MatSidenavModule,
-    MatTableModule,
-    MatCardModule,
-    MatButtonModule,
-    MatIconModule,
     ChartsModule,
     HttpClientModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule,
     FormsModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
     ReactiveFormsModule,
-    MatToolbarModule,
-    MatListModule,
-    MatDividerModule,
-    MatButtonToggleModule,
-    MatCheckboxModule,
-    MatGridListModule,
-    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
-    // and returns simulated server responses.
-    // Remove it when a real server is ready to receive requests.
+    MaterialModule, 
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
     )
