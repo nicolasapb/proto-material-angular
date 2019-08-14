@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { CaixaService } from './caixa.service';
-import { Caixa } from '../models/caixa'; 
-import { Economias } from '../models/economias';
+import { Caixa } from './caixa';
+import { Economias } from '../economias/economias';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { EconomiasService } from '../economias/economias.service';
 import { SavingsService } from '../savings/savings.service';
@@ -24,7 +24,7 @@ export class CaixaComponent implements OnInit {
   public formCaixa: FormGroup;
 
   constructor(
-    private caixaService: CaixaService, 
+    private caixaService: CaixaService,
     private economiasService: EconomiasService,
     private savingsService: SavingsService,
     private formBuilder: FormBuilder ) {

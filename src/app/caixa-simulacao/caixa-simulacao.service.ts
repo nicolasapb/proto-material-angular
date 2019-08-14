@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+
 import { Observable } from 'rxjs';
-import { Simulacao } from '../models/simulacao';
-import { HttpHeaders, HttpClient } from '@angular/common/http'; 
+import { Simulacao } from './simulacao';
 import { MessageHandler } from 'src/api/message-handler';
 import { catchError, tap } from 'rxjs/operators';
 

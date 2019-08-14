@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { MessageHandler } from 'src/api/message-handler';
 import { Observable } from 'rxjs';
-import { Economias } from '../models/economias';
+import { Economias } from './economias';
 import { catchError } from 'rxjs/operators';
 
 @Injectable({

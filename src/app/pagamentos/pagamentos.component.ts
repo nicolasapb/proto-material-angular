@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Economias } from '../models/economias';
-import { PagamentosLista } from '../models/pagamentos-lista';
-import { Resumo } from '../models/resumo';
-import { Savings } from '../models/savings'; 
+import { Economias } from '../economias/economias';
+import { PagamentosLista } from '../pagamentos-lista/pagamentos-lista';
+import { Resumo } from '../pagamentos-resumo/resumo';
+import { Savings } from '../savings/savings'; 
 import { EconomiasService } from '../economias/economias.service';
 import { PagamentosListaService } from '../pagamentos-lista/pagamentos-lista.service';
 import { PagamentosResumoService } from '../pagamentos-resumo/pagamentos-resumo.service';

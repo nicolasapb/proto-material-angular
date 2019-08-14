@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, ApplicationRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
-import { Caixa } from '../models/caixa';
-import { Simulacao } from '../models/simulacao';
+ 
+import { Simulacao } from './simulacao';
 import { CaixaSimulacaoService } from './caixa-simulacao.service';
+import { Caixa } from '../caixa/caixa';
 
 @Component({
   selector: 'app-caixa-simulacao',

@@ -1,7 +1,6 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { PAGAMENTOS_LISTA } from '../../assets/mock-data/mock-pagamentos-lista';
-import { TipoPagamento } from '../models/TipoPagamento';
-import { PagamentosLista } from '../models/pagamentos-lista';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core'; 
+import { TipoPagamento } from '../pagamentos-lista/TipoPagamento';
+import { PagamentosLista } from '../pagamentos-lista/pagamentos-lista';
 
 @Component({
   selector: 'app-parcelas',

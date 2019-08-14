@@ -1,4 +1,4 @@
-import { TipoPagamento } from './TipoPagamento';
+import { TipoPagamento } from '../pagamentos-lista/TipoPagamento';
 
 export class Resumo {
     tipoDeParcela: string;

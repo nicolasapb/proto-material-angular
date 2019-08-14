@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageHandler } from 'src/api/message-handler';
 import { Observable } from 'rxjs';
-import { PagamentosLista } from '../models/pagamentos-lista';
+import { PagamentosLista } from './pagamentos-lista';
 import { catchError, tap } from 'rxjs/operators';
 
 @Injectable({

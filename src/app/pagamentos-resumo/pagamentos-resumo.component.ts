@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { Resumo } from '../models/resumo';
+import { Resumo } from './resumo';
 
 @Component({
   selector: 'app-pagamentos-resumo',

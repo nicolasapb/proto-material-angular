@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http'; 
 import { MessageHandler } from 'src/api/message-handler';
 import { Observable } from 'rxjs';
-import { Savings } from '../models/savings';
+import { Savings } from './savings';
 import { catchError, tap } from 'rxjs/operators';
 
 @Injectable({

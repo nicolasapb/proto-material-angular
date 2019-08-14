@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
-import { Economias } from '../app/models/economias';
-import { PagamentosLista } from '../app/models/pagamentos-lista';
-import { TipoPagamento } from '../app/models/TipoPagamento';
-import { Resumo } from '../app/models/resumo';
-import { Savings } from '../app/models/savings';
-import { Caixa } from '../app/models/caixa';
-import { Simulacao } from 'src/app/models/simulacao';
+import { Economias } from '../app/economias/economias';
+import { PagamentosLista } from '../app/pagamentos-lista/pagamentos-lista';
+import { TipoPagamento } from '../app/pagamentos-lista/TipoPagamento';
+import { Resumo } from '../app/pagamentos-resumo/resumo';
+import { Savings } from '../app/savings/savings'; 
+import { Simulacao } from 'src/app/caixa-simulacao/simulacao';
+import { Caixa } from 'src/app/caixa/caixa';
 
 @Injectable({
   providedIn: 'root'

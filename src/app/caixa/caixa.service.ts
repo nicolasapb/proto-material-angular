@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { Caixa } from '../models/caixa';
+import { Caixa } from './caixa';
 import { MessageHandler } from 'src/api/message-handler';
 
 @Injectable({
