@@ -5,13 +5,15 @@ import { Observable } from 'rxjs';
 import { Simulacao } from './simulacao';
 import { MessageHandler } from 'src/api/message-handler';
 import { catchError, tap } from 'rxjs/operators';
+import { ParametrosSimulacao } from './parametrosSimulacao';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CaixaSimulacaoService {
 
-  private simulacaoUrl = 'api/simulacao'; // URL savings
+  private simulacaoUrl = 'api/simulacao'; // URL Simulcao
+  private parametrosUrl = 'api/parametrosSimulacao';
 
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -52,4 +54,20 @@ export class CaixaSimulacaoService {
       catchError(this.messageHandler.handleError<any>('putSimulacao'))
     );
   }
+
+  getParametrosSimulacao(): Observable<ParametrosSimulacao> {
+    return this.http.get<ParametrosSimulacao>(this.parametrosUrl)
+      .pipe(
+        catchError(this.messageHandler.handleError<ParametrosSimulacao>('getParametrosSimulacao'))
+      );
+  }
+
+  putParametrosSimulacao(param: ParametrosSimulacao): Observable<ParametrosSimulacao> {
+    return this.http.put<ParametrosSimulacao>(this.parametrosUrl, param, this.httpOptions)
+      .pipe(
+        tap( _ => this.messageHandler.log('updated parametros simulacao')),
+        catchError(this.messageHandler.handleError<ParametrosSimulacao>('putParametrosSimulacao'))
+      );
+  }
+
 }

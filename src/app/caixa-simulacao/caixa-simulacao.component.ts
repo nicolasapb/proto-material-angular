@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Simulacao } from './simulacao';
 import { CaixaSimulacaoService } from './caixa-simulacao.service';
 import { Caixa } from '../caixa/caixa';
+import { ParametrosSimulacao } from './parametrosSimulacao';
 
 @Component({
   selector: 'app-caixa-simulacao',
@@ -19,6 +20,7 @@ export class CaixaSimulacaoComponent implements OnInit {
   @Output() saved = new EventEmitter();
 
   public simulacoes: Simulacao[];
+  public parametrosSimulacao: ParametrosSimulacao;
   public formSim: FormGroup;
 
   public colunasSimulacao = [
@@ -55,11 +57,17 @@ export class CaixaSimulacaoComponent implements OnInit {
 
   ngOnInit() {
     this.getSimulacoes();
+    this.getParametrosSimulacao();
   }
 
   getSimulacoes(): void {
     this.service.getSimulacao()
       .subscribe(simulacoes => this.simulacoes = simulacoes);
+  }
+
+  getParametrosSimulacao(): void {
+    this.service.getParametrosSimulacao()
+      .subscribe(parametros => this.parametrosSimulacao = parametros);
   }
 
   addSimulacao(): void {

@@ -7,6 +7,7 @@ import { Resumo } from '../app/pagamentos-resumo/resumo';
 import { Savings } from '../app/savings/savings';
 import { Simulacao } from 'src/app/caixa-simulacao/simulacao';
 import { Caixa } from 'src/app/caixa/caixa';
+import { ParametrosSimulacao } from 'src/app/caixa-simulacao/parametrosSimulacao';
 
 @Injectable({
   providedIn: 'root'
@@ -451,13 +452,23 @@ export class InMemoryDataService implements InMemoryDbService {
 
     ];
 
+    const parametrosSimulacao: ParametrosSimulacao = {
+      id: 1,
+      taxaAA: 7.99,
+      taxaAM: 0.64,
+      cet: 8.60,
+      cesh: 2.4584,
+      prazo: 35
+    }
+
     return {
       economias,
       pagamentosLista,
       resumo,
       savings,
       caixa,
-      simulacao
+      simulacao,
+      parametrosSimulacao
     };
   }
 

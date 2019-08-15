@@ -1,7 +1,13 @@
 <mat-card class="simulacao-card">
     <mat-card-header>
         <mat-card-title>Simulação</mat-card-title>
-        <mat-card-subtitle>Taxa de juros efetiva com bonificação: <strong>7,99</strong> % a.a. <strong>0,64</strong> % a.m. + TR | Custo Efetivo Total (CET) com bonificação: <strong>8,60</strong> % a.a. | <br> Custo Efetivo do Seguro Habitacional (CESH): <strong>2,4584</strong> % | Prazo: <strong>35</strong> anos</mat-card-subtitle>
+        <mat-card-subtitle *ngIf="parametrosSimulacao">
+            Taxa de juros efetiva com bonificação: 
+            <strong>{{ parametrosSimulacao.taxaAA | number }}</strong> % a.a. 
+            <strong>{{ parametrosSimulacao.taxaAM | number }}</strong> % a.m. + TR | Custo Efetivo Total (CET) com bonificação: 
+            <strong>{{ parametrosSimulacao.cet | number }}</strong> % a.a. | <br> Custo Efetivo do Seguro Habitacional (CESH): 
+            <strong>{{ parametrosSimulacao.cesh | number }}</strong> % | Prazo: 
+            <strong>{{ parametrosSimulacao.prazo | number }}</strong> anos</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content> 
         <table mat-table #tableSimulacao [dataSource]="simulacoes" class="tabela-simulacao" [formGroup]="formSim">
