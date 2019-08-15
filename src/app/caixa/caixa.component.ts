@@ -81,7 +81,7 @@ export class CaixaComponent implements OnInit {
   }
 
   keyDownFunction(event: KeyboardEvent, item: Caixa) {
-    if (event.code === 'Enter' && this.formCaixa.value.valor) { 
+    if (event.code === 'Enter' && this.formCaixa.value.valor) {
       item.valor = this.formCaixa.value.valor;
       this.caixaService.putCaixa(item).subscribe();
     }
@@ -91,6 +91,13 @@ export class CaixaComponent implements OnInit {
     if (desmarcar) {
       this.caixa.forEach(c => c.cheked = false);
       this.totalCaixa = 0;
+    }
+  }
+
+  marcaTudo(marcar: boolean): void {
+    if (marcar) {
+      this.caixa.forEach(c => c.cheked = true);
+      this.totalCaixa = this.getTotalCaixa();
     }
   }
 

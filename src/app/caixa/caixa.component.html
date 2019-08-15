@@ -23,8 +23,13 @@
         </div> 
 
         <div class="caixa-meta">
-            <mat-card class="caixa-card">
-                <mat-list role="caixa-meta" *ngIf="caixa" class="caixa-list"> 
+            <mat-card class="caixa-card">         
+                <mat-list role="caixa-meta" *ngIf="caixa" class="caixa-list">  
+                    <mat-list-item>
+                        <button mat-icon-button (click)="marcaTudo(true)"><mat-icon>check_box</mat-icon></button>
+                        <button mat-icon-button (click)="desmarcaTudo(true)"><mat-icon>check_box_outline_blank</mat-icon></button>   
+                    </mat-list-item>
+                    <mat-divider></mat-divider>
                     <mat-list-item *ngFor="let item of caixa"> 
                         <mat-checkbox #c (click)="marcaItemCaixa(item, !c.checked)" [(checked)]="item.cheked" (change)="c.checked = !c.checked">&nbsp;</mat-checkbox>
                         <span matPrefix>{{ item.investimento }}:&nbsp;R$</span>
