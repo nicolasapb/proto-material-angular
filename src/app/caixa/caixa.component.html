@@ -1,6 +1,14 @@
 <div class="caixa-container">
 
     <div class="valores" *ngIf="caixa">
+
+        <div class="total-entrada">
+            <mat-card class="total-entrada-card">            
+                <p>Total: {{ total | currency:'BRL' }}</p>
+                <p>Entrada: {{ entrada | currency:'BRL' }}</p>
+            </mat-card>
+        </div> 
+
         <div class="caixa-economias">
             <mat-card class="econmias-card">
                 <mat-list role="ecnomias"  *ngIf="economias">
@@ -27,13 +35,6 @@
                     <mat-divider></mat-divider>
                     <mat-list-item role="caixa-meta-item">{{ totalCaixa | currency:'BRL' }}</mat-list-item>
                 </mat-list>            
-            </mat-card>
-        </div> 
-
-        <div class="total-entrada">
-            <mat-card class="total-entrada-card">            
-                <p>Total: {{ total | currency:'BRL' }}</p>
-                <p>Entrada: {{ entrada | currency:'BRL' }}</p>
             </mat-card>
         </div> 
 

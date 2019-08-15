@@ -98,10 +98,10 @@
             
             <ng-container matColumnDef="edit">
                 <th mat-header-cell *matHeaderCellDef ></th>
-                <td mat-cell *matCellDef="let item">
+                <td mat-cell *matCellDef="let simulacao">
                     <span class="botoes-simulacao">
-                        <button mat-icon-button (click)="deleteItem(item)"><mat-icon>delete</mat-icon></button>
-                        <button mat-icon-button (click)="editItem(item)"><mat-icon>edit</mat-icon></button> 
+                        <button mat-icon-button (click)="deleteItem(simulacao)"><mat-icon>delete</mat-icon></button>
+                        <button mat-icon-button (click)="editItem(simulacao)"><mat-icon>edit</mat-icon></button> 
                     </span>                              
                 </td>
                 <td mat-footer-cell *matFooterCellDef></td>

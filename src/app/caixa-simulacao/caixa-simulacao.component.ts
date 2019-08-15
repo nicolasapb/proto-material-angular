@@ -39,6 +39,7 @@ export class CaixaSimulacaoComponent implements OnInit {
     private formBuilder: FormBuilder,
     private service: CaixaSimulacaoService ) {
     this.formSim = this.formBuilder.group({
+      id: [],
       composicao: [{value: null, disabled: true}, [Validators.required]],
       total: [{value: null, disabled: true}, [Validators.required]],
       entrada: [{value: null, disabled: true}, [Validators.required]],
@@ -53,7 +54,7 @@ export class CaixaSimulacaoComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.getSimulacoes(); 
+    this.getSimulacoes();
   }
 
   getSimulacoes(): void {
@@ -75,6 +76,7 @@ export class CaixaSimulacaoComponent implements OnInit {
     const reforma = caixaFull - total;
 
     this.formSim.setValue({
+      id: null,
       composicao,
       total ,
       entrada ,
@@ -89,14 +91,36 @@ export class CaixaSimulacaoComponent implements OnInit {
 
   }
 
+  deleteItem(simulacao: Simulacao): void {
+    this.service.deleteSimulacao(simulacao).subscribe( _ => this.ngOnInit());
+  }
+
+  editItem(simulacao: Simulacao): void {
+    this.formSim.setValue({
+      id: simulacao.id,
+      composicao: simulacao.composicao,
+      total: simulacao.total,
+      entrada: simulacao.entrada,
+      pctEntrada: simulacao.pctEntrada,
+      financiamento: simulacao.financiamento,
+      pctFinanciamento: simulacao.pctFinanciamento,
+      reforma: simulacao.reforma,
+      vlParcela: simulacao.vlParcela,
+      finTaxas: simulacao.finTaxas,
+      comporRenda: simulacao.comporRenda,
+    });
+
+  }
+
   clearForm(): void {
     this.formSim.reset();
   }
 
   saveSimulacao(): void {
-    const formValues = this.formSim.getRawValue(); 
+    const formValues = this.formSim.getRawValue();
 
     const novaSimulacao: Simulacao = {
+      id: formValues.id,
       composicao: formValues.composicao,
       total: formValues.total,
       entrada: formValues.entrada,
@@ -109,9 +133,15 @@ export class CaixaSimulacaoComponent implements OnInit {
       comporRenda: formValues.comporRenda,
     };
 
-    this.service.postSimulacao(novaSimulacao).subscribe( _ => this.ngOnInit());
-    this.formSim.reset();
-    this.saved.emit(true);
+    if (this.simulacoes.find(simulacao => simulacao.id === novaSimulacao.id)) {
+      this.service.putSimulacao(novaSimulacao).subscribe(_ => this.ngOnInit());
+      this.formSim.reset();
+    } else {
+      this.service.postSimulacao(novaSimulacao).subscribe( _ => this.ngOnInit());
+      this.formSim.reset();
+      this.saved.emit(true);
+    }
+
   }
 
 }

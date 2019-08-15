@@ -35,4 +35,21 @@ export class CaixaSimulacaoService {
       catchError(this.messageHandler.handleError<Simulacao>('postSimulacao'))
     );
   }
+
+  deleteSimulacao(simulacao: Simulacao): Observable<Simulacao> {
+    const id = typeof simulacao === 'number' ? simulacao : simulacao.id;
+    const url = `${this.simulacaoUrl}/${id}`;
+
+    return this.http.delete<Simulacao>(url, this.httpOptions).pipe(
+      tap(_ => this.messageHandler.log(`deleted simulacao id=${id}`)),
+      catchError(this.messageHandler.handleError<Simulacao>('deleteSimulacao'))
+    );
+  }
+
+  putSimulacao(simulacao: Simulacao): Observable<any> {
+    return this.http.put(this.simulacaoUrl, simulacao, this.httpOptions).pipe(
+      tap(_ => this.messageHandler.log(`updated simulacao`)),
+      catchError(this.messageHandler.handleError<any>('putSimulacao'))
+    );
+  }
 }
