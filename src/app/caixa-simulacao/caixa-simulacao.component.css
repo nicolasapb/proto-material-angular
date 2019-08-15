@@ -15,7 +15,22 @@ table.tabela-simulacao {
     padding-right: 0.5em;
 } 
 
+.form-field-composicao {
+    width: 100%;
+}
+
+.botoes-simulacao { 
+    visibility: hidden; 
+    color: white;
+    opacity: 0.85;
+    width: 1em;
+}
 tr.mat-row:hover {
     background-color: lightgray;
+}
+
+tr.mat-row:hover .botoes-simulacao {       
+    visibility: visible; 
+    width: 1em;
 }
  

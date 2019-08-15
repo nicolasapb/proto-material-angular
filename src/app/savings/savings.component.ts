@@ -59,8 +59,7 @@ export class SavingsComponent implements OnChanges {
 
   keyDownFunction(event: KeyboardEvent) {
 
-    if (event.code === 'Enter' && this.formNovoValor.value.novoValor) {
-      console.log(event.code, this.formNovoValor.value.novoValor);
+    if (event.code === 'Enter' && this.formNovoValor.value.novoValor) { 
       const saving = new Savings();
       saving.valor = this.formNovoValor.value.novoValor;
       this.addItem(saving);

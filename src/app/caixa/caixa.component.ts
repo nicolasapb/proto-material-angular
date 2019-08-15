@@ -22,6 +22,8 @@ export class CaixaComponent implements OnInit {
   public totalEconomias: number;
   public soma = [];
   public formCaixa: FormGroup;
+  public salvo: boolean;
+  public checked = false;
 
   constructor(
     private caixaService: CaixaService,
@@ -74,12 +76,21 @@ export class CaixaComponent implements OnInit {
   marcaItemCaixa(item: Caixa, check: boolean) {
     const i = this.caixa.indexOf(item, 0);
     this.caixa[i].cheked = check;
+    item.cheked = check;
     this.totalCaixa = this.getTotalCaixa();
   }
 
   keyDownFunction(event: KeyboardEvent, item: Caixa) {
-    if (event.code === 'Enter' && this.formCaixa.value.valor) {
-      console.log(event.code, this.formCaixa.value.valor, item);
+    if (event.code === 'Enter' && this.formCaixa.value.valor) { 
+      item.valor = this.formCaixa.value.valor;
+      this.caixaService.putCaixa(item).subscribe();
+    }
+  }
+
+  desmarcaTudo(desmarcar: boolean): void {
+    if (desmarcar) {
+      this.caixa.forEach(c => c.cheked = false);
+      this.totalCaixa = 0;
     }
   }
 

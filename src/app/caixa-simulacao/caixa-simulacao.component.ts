@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, ApplicationRef } from '@angular/core';
+import { Component, OnInit, Input, ApplicationRef, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
- 
+
 import { Simulacao } from './simulacao';
 import { CaixaSimulacaoService } from './caixa-simulacao.service';
 import { Caixa } from '../caixa/caixa';
@@ -16,19 +16,21 @@ export class CaixaSimulacaoComponent implements OnInit {
   @Input() total: number;
   @Input() entrada: number;
   @Input() totalCaixa: number;
+  @Output() saved = new EventEmitter();
 
   public simulacoes: Simulacao[];
   public formSim: FormGroup;
 
   public colunasSimulacao = [
     'composicao',
+    'edit',
+    'vlParcela',
     'total',
     'entrada',
     'pctEntrada',
     'financiamento',
     'pctFinanciamento',
     'reforma',
-    'vlParcela',
     'finTaxas',
     'comporRenda',
   ];
@@ -51,7 +53,7 @@ export class CaixaSimulacaoComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.getSimulacoes();
+    this.getSimulacoes(); 
   }
 
   getSimulacoes(): void {
@@ -87,9 +89,13 @@ export class CaixaSimulacaoComponent implements OnInit {
 
   }
 
+  clearForm(): void {
+    this.formSim.reset();
+  }
+
   saveSimulacao(): void {
-    const formValues = this.formSim.getRawValue();
-    console.log(formValues);
+    const formValues = this.formSim.getRawValue(); 
+
     const novaSimulacao: Simulacao = {
       composicao: formValues.composicao,
       total: formValues.total,
@@ -103,9 +109,9 @@ export class CaixaSimulacaoComponent implements OnInit {
       comporRenda: formValues.comporRenda,
     };
 
-    console.log(novaSimulacao);
     this.service.postSimulacao(novaSimulacao).subscribe( _ => this.ngOnInit());
     this.formSim.reset();
+    this.saved.emit(true);
   }
 
 }

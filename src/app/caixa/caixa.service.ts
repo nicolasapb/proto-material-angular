@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 
 import { Caixa } from './caixa';
 import { MessageHandler } from 'src/api/message-handler';
@@ -27,5 +27,13 @@ export class CaixaService {
       .pipe(
         catchError(this.messageHandler.handleError<Caixa[]>('getCaixa'))
       );
+  }
+
+  putCaixa(caixa: Caixa): Observable<Caixa> {
+    return this.http.put<Caixa>(this.caixaUrl, caixa, this.httpOptions)
+    .pipe(
+      tap((updatedCaixa: Caixa) => this.messageHandler.log(`updated Caixa ${updatedCaixa}`)),
+      catchError(this.messageHandler.handleError<Caixa>('postSimulacao'))
+    );
   }
 }

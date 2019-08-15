@@ -4,7 +4,7 @@ import { Economias } from '../app/economias/economias';
 import { PagamentosLista } from '../app/pagamentos-lista/pagamentos-lista';
 import { TipoPagamento } from '../app/pagamentos-lista/TipoPagamento';
 import { Resumo } from '../app/pagamentos-resumo/resumo';
-import { Savings } from '../app/savings/savings'; 
+import { Savings } from '../app/savings/savings';
 import { Simulacao } from 'src/app/caixa-simulacao/simulacao';
 import { Caixa } from 'src/app/caixa/caixa';
 
@@ -328,7 +328,128 @@ export class InMemoryDataService implements InMemoryDbService {
         cheked: false,
       }];
 
-    const simulacao: Simulacao[] = [];
+    const simulacao: Simulacao[] = [
+      { id: 1,
+        comporRenda: 'Ana Flavia',
+        composicao: 'PREVIDÊNCIA,POUPANÇA,FGTS,CARRO',
+        entrada: 258189,
+        finTaxas: null,
+        financiamento: 252192,
+        pctEntrada: 0.5058750227771018,
+        pctFinanciamento: 0.49412497722289817,
+        reforma: 77500,
+        total: 140189,
+        vlParcela: 2375.44 },
+
+      { id: 2,
+        comporRenda: 'Ana Flavia',
+        composicao: 'PPR,PREVIDÊNCIA,POUPANÇA,FGTS,TESOURO',
+        entrada: 249689,
+        finTaxas: null,
+        financiamento: 260692,
+        pctEntrada: 0.4892207977961562,
+        pctFinanciamento: 0.5107792022038438,
+        reforma: 86000,
+        total: 131689,
+        vlParcela: 2451.75 },
+
+      { id: 3,
+        comporRenda: 'Ana Flavia',
+        composicao: 'PREVIDÊNCIA,POUPANÇA,FGTS,CARRO,TESOURO',
+        entrada: 283689,
+        finTaxas: null,
+        financiamento: 226692,
+        pctEntrada: 0.5558376977199386,
+        pctFinanciamento: 0.44416230228006137,
+        reforma: 52000,
+        total: 165689,
+        vlParcela: 2146.53 },
+
+      { comporRenda: 'Ana Flavia',
+        composicao: 'PPR,PREVIDÊNCIA,POUPANÇA,FGTS,CDB,TESOURO',
+        entrada: 285689,
+        finTaxas: null,
+        financiamento: 224692,
+        id: 4,
+        pctEntrada: 0.5597563388919259,
+        pctFinanciamento: 0.4402436611080741,
+        reforma: 50000,
+        total: 167689,
+        vlParcela: 2128.58 },
+
+      { comporRenda: 'Ana Flavia',
+        composicao: 'PREVIDÊNCIA,POUPANÇA,FGTS,TESOURO',
+        entrada: 233689,
+        finTaxas: null,
+        financiamento: 276692,
+        id: 5,
+        pctEntrada: 0.4578716684202586,
+        pctFinanciamento: 0.5421283315797414,
+        reforma: 102000,
+        total: 115689,
+        vlParcela: 2595.37 },
+
+      { comporRenda: 'Ana Flavia',
+        composicao: 'FGTS,CARRO',
+        entrada: 228000,
+        finTaxas: null,
+        financiamento: 282381,
+        id: 6,
+        pctEntrada: 0.446725093606541,
+        pctFinanciamento: 0.553274906393459,
+        reforma: 107689,
+        total: 110000,
+        vlParcela: 2585.4 },
+
+      { comporRenda: 'Ana Flavia',
+        composicao: 'PREVIDÊNCIA,POUPANÇA,FGTS',
+        entrada: 208189,
+        finTaxas: null,
+        financiamento: 302192,
+        id: 7,
+        pctEntrada: 0.40790899347742177,
+        pctFinanciamento: 0.5920910065225782,
+        reforma: 127500,
+        total: 90189,
+        vlParcela: 2824.28 },
+
+      { comporRenda: 'Ana Flavia',
+        composicao: 'PREVIDÊNCIA,FGTS',
+        entrada: 187300.41999999998,
+        finTaxas: null,
+        financiamento: 323080.58,
+        id: 8,
+        pctEntrada: 0.36698156867124754,
+        pctFinanciamento: 0.6330184313287525,
+        reforma: 148388.58000000002,
+        total: 69300.42,
+        vlParcela: 2950.75},
+
+      { comporRenda: 'Ana Flavia',
+        composicao: 'POUPANÇA,FGTS',
+        entrada: 198888.58000000002,
+        finTaxas: null,
+        financiamento: 311492.42,
+        id: 9,
+        pctEntrada: 0.3896864891130352,
+        pctFinanciamento: 0.6103135108869648,
+        reforma: 136800.41999999998,
+        total: 80888.58,
+        vlParcela: 2907.77},
+
+      { comporRenda: 'Ana Flavia',
+        composicao: 'FGTS',
+        entrada: 178000,
+        finTaxas: null,
+        financiamento: 332381,
+        id: 10,
+        pctEntrada: 0.34875906430686093,
+        pctFinanciamento: 0.651240935693139,
+        reforma: 157689,
+        total: 60000,
+        vlParcela: 3034.24 }
+
+    ];
 
     return {
       economias,
